@@ -1,0 +1,14 @@
+# 单文件入口：源码在 src/，esbuild 打包产物放 dist/（网页部署用）
+main = "src/index.js"
+name = "free-node-subscription"
+compatibility_date = "2026-09-01"
+# 取响应头要靠 getSetCookie()，没有这个兼容开关会报错
+compatibility_flags = ["nodejs_compat"]
+
+# 整个项目只需要 KV 这一个绑定：口令、订阅路径、缓存配置全存 KV，
+# 既不用环境变量也不用定时触发器。
+#   建命名空间： npx wrangler kv namespace create KV
+#   然后把返回的 id 填到下面一行。
+[[kv_namespaces]]
+binding = "KV"
+id = "在这里填你的 KV namespace id"

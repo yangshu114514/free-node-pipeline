@@ -1,0 +1,42 @@
+# Schedule 保活：防止仓库超过 60 天无 commit 时 GitHub 自动禁用定时工作流。
+# 自研实现（幂等）：每次 cron 直接调 GitHub API 把各 schedule workflow 重新 enable。
+# 教训：曾引用同类第三方 action，其上游仓库已被 GitHub 依 ToS 封禁（2025-04），
+# 首次 cron 即 "Repository access blocked" 失败——第三方 action 是供应链风险，
+# 10 行 API 调用自己写更稳。
+name: Keepalive Workflow
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  keepalive:
+    name: Keepalive Workflow
+    runs-on: ubuntu-latest
+    steps:
+      # 枚举仓库内 state=active 的 workflow 再逐个 enable（消除"新增 workflow 漏同步"）；
+      # 对已启用者幂等 no-op。任何 enable 失败（403/权限/文件缺失）→ error + job 红，
+      # 借 Actions 失败邮件暴露问题，不再用 warning 静默吞掉。
+      - name: 重新启用各 schedule 工作流
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          gh api "repos/${GITHUB_REPOSITORY}/actions/workflows?per_page=100" \
+            --jq '.workflows[] | select(.state == "active") | .path' > /tmp/active-wf.txt
+          echo "枚举到 $(wc -l < /tmp/active-wf.txt) 个 active workflow"
+          rc=0
+          while read -r p; do
+            wf=$(basename "$p")
+            if gh api -X PUT "repos/${GITHUB_REPOSITORY}/actions/workflows/${wf}/enable" > /dev/null; then
+              echo "ok: ${wf}"
+            else
+              echo "::error::enable 失败（权限不足或文件缺失）: ${wf}"
+              rc=1
+            fi
+          done < /tmp/active-wf.txt
+          exit $rc

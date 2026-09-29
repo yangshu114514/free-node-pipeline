@@ -1,0 +1,1106 @@
+{
+  "generated_at": "2026-09-27T13:53:02",
+  "cutoff": "2026-08-15",
+  "total_candidates": 122,
+  "active": 122,
+  "sources": [
+    {
+      "repo": "hproxy-com/free-proxy-list",
+      "pushed_at": "2026-09-27T05:50:42Z",
+      "stars": 64,
+      "desc": "Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several tim",
+      "url": "https://github.com/hproxy-com/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "ebrasha/abdal-proxy-hub",
+      "pushed_at": "2026-09-27T05:50:30Z",
+      "stars": 50,
+      "desc": "A curated list of free, tested proxies by EbraSha — updated every 10 minutes for maximum availability and freedom. Also on Telegram: https://t.me/AbdalProxyBot",
+      "url": "https://github.com/ebrasha/abdal-proxy-hub",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "ProxyScrape/free-proxy-list",
+      "pushed_at": "2026-09-27T05:50:12Z",
+      "stars": 155,
+      "desc": "Free HTTP, HTTPS, SOCKS4 & SOCKS5 proxy list. ~22k proxies across 90+ countries, refreshed every 5 minutes from the ProxyScrape v4 API. TXT, JSON & CSV.",
+      "url": "https://github.com/ProxyScrape/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "freeb5d/kite",
+      "pushed_at": "2026-09-27T05:50:07Z",
+      "stars": 7,
+      "desc": "Free, open-source V2Ray / Xray desktop client for Windows, Linux and macOS. VLESS, VMess, Trojan, Shadowsocks · REALITY · TUN mode · kill switch · subscriptions",
+      "url": "https://github.com/freeb5d/kite",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "watchttvv/free-proxy-list",
+      "pushed_at": "2026-09-27T05:50:06Z",
+      "stars": 157,
+      "desc": "free socks5 http https proxy-list 免费socks5代理 socks5爬虫代理 最新socks5",
+      "url": "https://github.com/watchttvv/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "dpangestuw/Free-Proxy",
+      "pushed_at": "2026-09-27T05:48:37Z",
+      "stars": 153,
+      "desc": "Free Proxy List 🔄 Update Every 5 Minutes",
+      "url": "https://github.com/dpangestuw/Free-Proxy",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "databay-labs/free-proxy-list",
+      "pushed_at": "2026-09-27T05:48:36Z",
+      "stars": 43,
+      "desc": "Free Proxy List ✅​🚀 HTTP, HTTPS, SOCKS4 & SOCKS5 | Updated every 5 minutes | Strict SSL, zero MITM, multi-country",
+      "url": "https://github.com/databay-labs/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Xnuvers007/free-proxy",
+      "pushed_at": "2026-09-27T05:48:07Z",
+      "stars": 4,
+      "desc": "Free Proxy Checker adalah skrip Python profesional untuk mengambil, memvalidasi, dan menyimpan daftar proxy gratis dari situs free-proxy-list.net.",
+      "url": "https://github.com/Xnuvers007/free-proxy",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "6yyn/free-proxy-list",
+      "pushed_at": "2026-09-27T05:47:24Z",
+      "stars": 5,
+      "desc": "Auto-updated free HTTP / HTTPS proxy list every 3–5 minutes.",
+      "url": "https://github.com/6yyn/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "cbusifabcap/daily_free_vpn",
+      "pushed_at": "2026-09-27T05:46:53Z",
+      "stars": 285,
+      "desc": "分享免费节点、免费机场、付费机场、电报代理、ssr节点、v2ray节点、v2ray订阅、clash节点、clash订阅、shadowrocket订阅、Quantumult X订阅、Clash .NET订阅、小火箭节点、小猫咪节点、免费翻墙、免费科学上网、免费梯子、免费trojan节点、蓝灯、谷歌商店、翻墙梯子、安卓VP",
+      "url": "https://github.com/cbusifabcap/daily_free_vpn",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "MrMarble/proxy-list",
+      "pushed_at": "2026-09-27T05:46:16Z",
+      "stars": 104,
+      "desc": "Free https proxy list",
+      "url": "https://github.com/MrMarble/proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "iplocate/free-proxy-list",
+      "pushed_at": "2026-09-27T05:45:58Z",
+      "stars": 317,
+      "desc": "⚡️ Free Verified HTTP, SOCKS5, & SOCKS4 Proxy List ⏰ Updated every 30 minutes",
+      "url": "https://github.com/iplocate/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "iboxz/free-v2ray-collector",
+      "pushed_at": "2026-09-27T05:45:55Z",
+      "stars": 178,
+      "desc": "V2Ray config collector, multiple protocols support Mix, Reality, VLESS, VMESS, Shadowsocks, Trojan",
+      "url": "https://github.com/iboxz/free-v2ray-collector",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "ProblemTheCode/SylphNet-public",
+      "pushed_at": "2026-09-27T05:45:35Z",
+      "stars": 10,
+      "desc": "⚡ SylphNet — Free V2Ray/VLESS/VMess/Trojan subscription, 350+ configs, auto-updated every 15 minutes | @SylphNet",
+      "url": "https://github.com/ProblemTheCode/SylphNet-public",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "0xRadikal/Free-v2ray-Configs",
+      "pushed_at": "2026-09-27T05:45:24Z",
+      "stars": 633,
+      "desc": "🔒 Free V2Ray configs auto-updated every 15m | VLESS, VMess, Trojan, Shadowsocks, Hysteria2, TUIC, Reality, WireGuard | subscription link | bypass censorship | C",
+      "url": "https://github.com/0xRadikal/Free-v2ray-Configs",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Moleway/Free-Proxy-List",
+      "pushed_at": "2026-09-27T05:45:09Z",
+      "stars": 5,
+      "desc": "Free HTTP, HTTPS, SOCKS4 and SOCKS5 proxy lists, continuously checked and revalidated by Moleway.",
+      "url": "https://github.com/Moleway/Free-Proxy-List",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "vmheaven/VMHeaven.io-Free-Proxy-List",
+      "pushed_at": "2026-09-27T05:45:04Z",
+      "stars": 46,
+      "desc": "Fresh list of HTTP/S & SOCKS4/SOCKS5 Proxies, Amazon excluded, Updating every 15 minutes!",
+      "url": "https://github.com/vmheaven/VMHeaven.io-Free-Proxy-List",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "ebrasha/free-v2ray-public-list",
+      "pushed_at": "2026-09-27T05:44:17Z",
+      "stars": 1318,
+      "desc": "A simple and always-updated list of free, working V2Ray servers. including SS, SSR, Trojan, VLESS, VMess, TUIC, and Hysteria2. Just copy, paste, and connect — n",
+      "url": "https://github.com/ebrasha/free-v2ray-public-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Zaeem20/FREE_PROXIES_LIST",
+      "pushed_at": "2026-09-27T05:42:54Z",
+      "stars": 415,
+      "desc": "FREE PROXY LIST (Gets Updated Every 10 Minutes). included HTTP(S) Proxy.",
+      "url": "https://github.com/Zaeem20/FREE_PROXIES_LIST",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "tomjiu/proxy-pipeline",
+      "pushed_at": "2026-09-27T05:42:44Z",
+      "stars": 0,
+      "desc": "Free proxy list multi-raw mirror + Cloudflare Worker API (deduped)",
+      "url": "https://github.com/tomjiu/proxy-pipeline",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "VPSLabCloud/VPSLab-Free-Proxy-List",
+      "pushed_at": "2026-09-27T05:42:28Z",
+      "stars": 147,
+      "desc": "Free proxy list updated every 15 minutes | HTTP, HTTPS, SOCKS4, SOCKS5, elite & anonymous proxies. Powered by VPSLab.",
+      "url": "https://github.com/VPSLabCloud/VPSLab-Free-Proxy-List",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "z3a4/free-proxy-list",
+      "pushed_at": "2026-09-27T05:42:11Z",
+      "stars": 4,
+      "desc": "Automatically updated proxy lists HTTP, HTTPS, SOCKS4, SOCKS5 from multiple sources",
+      "url": "https://github.com/z3a4/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "MustafaBaqer/VestraNet-Nodes",
+      "pushed_at": "2026-09-27T05:41:07Z",
+      "stars": 84,
+      "desc": "⚡ Automated, High-Performance Xray/V2Ray & MTProto Subscriptions. Extracted, tested, and updated dynamically tevery 15 minutes.",
+      "url": "https://github.com/MustafaBaqer/VestraNet-Nodes",
+      "archived": false,
+      "via": "user"
+    },
+    {
+      "repo": "proxio-io/proxy-list",
+      "pushed_at": "2026-09-27T05:40:14Z",
+      "stars": 4,
+      "desc": "Free proxy list, updated every 20 minutes — HTTP, HTTPS, SOCKS4, SOCKS5 as ip:port txt + JSON with country, anonymity, latency and reliability scores. Mirrored ",
+      "url": "https://github.com/proxio-io/proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "MohammadBahemmat/V2ray-Collector",
+      "pushed_at": "2026-09-27T05:38:29Z",
+      "stars": 84,
+      "desc": "💠جمع‌آوری خودکار و رایگان کانفیگ‌های V2Ray از گیتهاب و تلگرام (بدون API). آپدیت هر ۱۵ دقیقه با GitHub Actions. خروجی تفکیک‌شده بر اساس پروتکل. 💠Automated & free",
+      "url": "https://github.com/MohammadBahemmat/V2ray-Collector",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "maximilianfeix/proxy-scraper",
+      "pushed_at": "2026-09-27T05:35:45Z",
+      "stars": 12,
+      "desc": "Free proxies that actually work: 700+ sources, every hit verified (honeypots, injected scripts, TLS), a live list every hour, a rotating proxy server and an MCP",
+      "url": "https://github.com/maximilianfeix/proxy-scraper",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "azestkingscrown/Free_Proxy_List",
+      "pushed_at": "2026-09-27T05:35:03Z",
+      "stars": 1,
+      "desc": "PROXY IS FREE",
+      "url": "https://github.com/azestkingscrown/Free_Proxy_List",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gfpcom/free-proxy-list",
+      "pushed_at": "2026-09-27T05:34:17Z",
+      "stars": 415,
+      "desc": "🚀 The Best Free HTTP, SOCKS4/SOCKS5, SSL,SS/SSR Proxy List,V2Ray/XRay(Vmess/Vless) Configs, Tuic, Wireguard, Hyeseria, Trojan-Go/Trojan-GFW Servers  - 🔄 Updated",
+      "url": "https://github.com/gfpcom/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "sunmiao4458/free-proxy-airport",
+      "pushed_at": "2026-09-27T05:33:23Z",
+      "stars": 416,
+      "desc": "Self-healing Clash free subscription generated by GitHub Actions.",
+      "url": "https://github.com/sunmiao4458/free-proxy-airport",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "SoliSpirit/SolVPN",
+      "pushed_at": "2026-09-27T05:32:16Z",
+      "stars": 48,
+      "desc": "Auto-updated V2Ray configs (every 30 min) – pre-tested for connectivity",
+      "url": "https://github.com/SoliSpirit/SolVPN",
+      "archived": false,
+      "via": "user"
+    },
+    {
+      "repo": "mmpx12/proxy-list",
+      "pushed_at": "2026-09-27T05:30:19Z",
+      "stars": 433,
+      "desc": "Free proxies (few vpn and tor exit nodes) from various sources update hourly.",
+      "url": "https://github.com/mmpx12/proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gproxynet/free-proxy-list",
+      "pushed_at": "2026-09-27T05:30:03Z",
+      "stars": 2,
+      "desc": "Free public proxy list — HTTP/SOCKS4/SOCKS5, checked hourly, with country & latency. Auto-updated.",
+      "url": "https://github.com/gproxynet/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "xyzs996/free-proxy-health-list",
+      "pushed_at": "2026-09-27T05:29:23Z",
+      "stars": 30,
+      "desc": "Free proxy list by country: verified SOCKS5, SOCKS4, HTTP and HTTPS proxies, rechecked every 30 minutes, as TXT, JSON and CSV.",
+      "url": "https://github.com/xyzs996/free-proxy-health-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "M1noa/proxypool",
+      "pushed_at": "2026-09-27T05:28:25Z",
+      "stars": 9,
+      "desc": "hourly-refreshed, checked, proxy list - the only proxy repo you'll ever need",
+      "url": "https://github.com/M1noa/proxypool",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "proxmint/free-proxy-list",
+      "pushed_at": "2026-09-27T05:26:41Z",
+      "stars": 19,
+      "desc": "Free proxy list, re-validated every 30 minutes. HTTP/HTTPS/SOCKS4/SOCKS5, measured anonymity, auto-committed as txt + JSON.",
+      "url": "https://github.com/proxmint/free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "3000S-HTTP/sNSub",
+      "pushed_at": "2026-09-27T05:26:08Z",
+      "stars": 1,
+      "desc": "Auto-updating V2Ray/Xray subscription built from public free-config sources",
+      "url": "https://github.com/3000S-HTTP/sNSub",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "monosans/proxy-list",
+      "pushed_at": "2026-09-27T05:22:51Z",
+      "stars": 1520,
+      "desc": "Free HTTP, SOCKS4 and SOCKS5 proxy lists, re-checked every hour. Plain text and JSON, sorted fastest first, with response time, exit IP, ASN and geolocation. No",
+      "url": "https://github.com/monosans/proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxy-checker-list",
+      "pushed_at": "2026-09-27T05:22:10Z",
+      "stars": 0,
+      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxy-checker-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "anonymouskeys/Free-configs-",
+      "pushed_at": "2026-09-27T05:18:20Z",
+      "stars": 10,
+      "desc": "Automatically updated free VPN subscriptions with categorized VLESS, VMess, Trojan, Shadowsocks, Hysteria and Hysteria2 configurations.",
+      "url": "https://github.com/anonymouskeys/Free-configs-",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "nukcrow/black-crow",
+      "pushed_at": "2026-09-27T05:17:23Z",
+      "stars": 8,
+      "desc": "Automated high-quality V2Ray/Xray subscription collector (VLESS, VMess, Hysteria2) updated every 3 hours.",
+      "url": "https://github.com/nukcrow/black-crow",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "zhuhaiuk/free-nodes",
+      "pushed_at": "2026-09-27T05:16:33Z",
+      "stars": 278,
+      "desc": "每小时自动更新的免费节点订阅，支持 Clash、Mihomo、V2Ray、Trojan、Shadowrocket 等客户端测试使用。",
+      "url": "https://github.com/zhuhaiuk/free-nodes",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Mohammedcha/ProxRipper",
+      "pushed_at": "2026-09-27T05:14:24Z",
+      "stars": 41,
+      "desc": "Fresh free proxy list (HTTP, HTTPS, SOCKS4/5) updated every 15 minutes",
+      "url": "https://github.com/Mohammedcha/ProxRipper",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "tgmtproxy/telegram-mtproto-proxy-list",
+      "pushed_at": "2026-09-27T05:13:34Z",
+      "stars": 7,
+      "desc": "MTProto прокси для Telegram: рабочий список мтпрокси для тг, обновляется каждый час. Free Telegram MTProxy list, verified hourly.",
+      "url": "https://github.com/tgmtproxy/telegram-mtproto-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Au1rxx/free-vpn-subscriptions",
+      "pushed_at": "2026-09-27T05:02:40Z",
+      "stars": 835,
+      "desc": "Free Clash, sing-box, and V2Ray subscription feed with live node status and setup guides",
+      "url": "https://github.com/Au1rxx/free-vpn-subscriptions",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "anonymouskeys/Vpn",
+      "pushed_at": "2026-09-27T05:02:36Z",
+      "stars": 4,
+      "desc": "🇷🇺 Интернет должен быть открытым и свободным для каждого. Без границ и цензуры. 🇬🇧 The Internet must be open and free for everyone. No borders, no censorship. 🇮",
+      "url": "https://github.com/anonymouskeys/Vpn",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "aviamastersgh/vpn-free-russia",
+      "pushed_at": "2026-09-27T05:01:44Z",
+      "stars": 28,
+      "desc": "Бесплатные VPN-конфигурации для России: VLESS Reality, Hysteria2, Trojan, VMess, Shadowsocks и TUIC. Проверенные VPN-подписки для v2rayNG, v2rayN, Hiddify, Kari",
+      "url": "https://github.com/aviamastersgh/vpn-free-russia",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Pawdroid/Free-servers",
+      "pushed_at": "2026-09-27T05:00:40Z",
+      "stars": 19236,
+      "desc": "🚀 免费订阅地址，🚀 免费节点，🚀 6小时更新一次，共享节点，节点质量高可用，完全免费。免费clash订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, 🚀 Updated every",
+      "url": "https://github.com/Pawdroid/Free-servers",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "roosterkid/openproxylist",
+      "pushed_at": "2026-09-27T05:00:31Z",
+      "stars": 929,
+      "desc": "List of Free HTTPS, SOCKS4, SOCKS5 & V2Ray Proxy (Hourly Updates!)",
+      "url": "https://github.com/roosterkid/openproxylist",
+      "archived": false,
+      "via": "user"
+    },
+    {
+      "repo": "junjun266/FreeProxyGo",
+      "pushed_at": "2026-09-27T05:00:01Z",
+      "stars": 163,
+      "desc": "🚀 免费订阅地址，🚀 免费节点，🚀 6小时更新一次，共享节点，节点质量高可用，完全免费。免费clash订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, 🚀 Updated every",
+      "url": "https://github.com/junjun266/FreeProxyGo",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "chaishpish/free_server_v2ray",
+      "pushed_at": "2026-09-27T04:40:49Z",
+      "stars": 3,
+      "desc": "🚀 Free V2Ray / VLESS / VMess / Trojan configurations with regularly updated servers and subscription links.",
+      "url": "https://github.com/chaishpish/free_server_v2ray",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "SnapdragonLee/SystemProxy",
+      "pushed_at": "2026-09-27T04:22:20Z",
+      "stars": 136,
+      "desc": "Free Clash subscription",
+      "url": "https://github.com/SnapdragonLee/SystemProxy",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "MahanKenway/Freedom-V2Ray",
+      "pushed_at": "2026-09-27T04:16:42Z",
+      "stars": 110,
+      "desc": "V2Ray Collector | Auto-Update every 2 hours |VLESS, VMESS, Trojan & Reality configs. 🕊️ For a Free Iran - برای آزادی ایران",
+      "url": "https://github.com/MahanKenway/Freedom-V2Ray",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "snakem982/proxypool",
+      "pushed_at": "2026-09-27T04:15:04Z",
+      "stars": 2115,
+      "desc": "Free Proxies，Free Nodes，免费节点，白嫖节点，免费vpn，免费v2ray，免费订阅，免费clash，Free VPN，Free v2ray，Free Sub，Free Clash",
+      "url": "https://github.com/snakem982/proxypool",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Idolvpn/Automate-V2ray-Config-Collector",
+      "pushed_at": "2026-09-27T04:05:12Z",
+      "stars": 11,
+      "desc": "Automated V2Ray config collector — fetches, health-checks, deduplicates, and publishes free VLESS/VMess/Trojan/SS configs from Telegram & public sources every 2",
+      "url": "https://github.com/Idolvpn/Automate-V2ray-Config-Collector",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Romaxa55/MegaV_Public",
+      "pushed_at": "2026-09-27T04:01:56Z",
+      "stars": 89,
+      "desc": "Free VPN with VLESS Reality, Xray & V2Ray — free config & subscription support (VMess, Trojan, Shadowsocks, WireGuard). Privacy-first, no-logs, built-in ad bloc",
+      "url": "https://github.com/Romaxa55/MegaV_Public",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "crossxx-labs/free-proxy",
+      "pushed_at": "2026-09-27T04:00:07Z",
+      "stars": 1769,
+      "desc": "Provide free clash subscriptions of ssr / vmess / hysteria2 proxy servers 提供免费clash订阅，免费ssr节点，免费trojan节点，免费vmess节点，免费hysteria2节点服务器",
+      "url": "https://github.com/crossxx-labs/free-proxy",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "F0rc3Run/F0rc3Run",
+      "pushed_at": "2026-09-27T03:50:13Z",
+      "stars": 306,
+      "desc": "Free VPNs with VMess, VLESS, Shadowsocks & SSTP — powered by V2rayCollector. Bypass censorship, protect your privacy, and enjoy fast, secure, and unrestricted i",
+      "url": "https://github.com/F0rc3Run/F0rc3Run",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "MatinGhanbari/v2ray-configs",
+      "pushed_at": "2026-09-27T03:34:00Z",
+      "stars": 669,
+      "desc": "♾️ Free V2ray Configs, Updating Every 15 minutes. ",
+      "url": "https://github.com/MatinGhanbari/v2ray-configs",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "adop1344-bot/LetoVPN_free",
+      "pushed_at": "2026-09-27T03:24:28Z",
+      "stars": 6,
+      "desc": "летовпн основан на открытых конфигах vless vmess trojan итд",
+      "url": "https://github.com/adop1344-bot/LetoVPN_free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "TheSpeedX/PROXY-List",
+      "pushed_at": "2026-09-27T03:12:41Z",
+      "stars": 5829,
+      "desc": "Get PROXY List  that gets updated everyday",
+      "url": "https://github.com/TheSpeedX/PROXY-List",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "anarasius-1913/Advanced-Onion-Router",
+      "pushed_at": "2026-09-27T03:08:29Z",
+      "stars": 0,
+      "desc": "Download Advanced Onion Router — a privacy-focused proxy tool for Windows with free download. Browse anonymously using advanced features like SOCKS support, HTT",
+      "url": "https://github.com/anarasius-1913/Advanced-Onion-Router",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "asedywestwood0/Advanced-Onion-Router-Full-Version",
+      "pushed_at": "2026-09-27T03:02:04Z",
+      "stars": 0,
+      "desc": "Advanced Onion Router is a free full-version proxies software for Windows that enables anonymous web browsing and protects your privacy online. With advanced fe",
+      "url": "https://github.com/asedywestwood0/Advanced-Onion-Router-Full-Version",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "awesome-vpn/awesome-vpn",
+      "pushed_at": "2026-09-27T02:51:58Z",
+      "stars": 6485,
+      "desc": "Free proxy node aggregator. Daily updated vmess/vless/trojan/ss. 免费 代理节点 翻墙 梯子 科学上网 机场订阅 网络加速 VPN 免翻墙每日更新 一键导入",
+      "url": "https://github.com/awesome-vpn/awesome-vpn",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "LalatinaHub/LatinaSub",
+      "pushed_at": "2026-09-27T02:34:05Z",
+      "stars": 11,
+      "desc": "Free raw subscription nodes",
+      "url": "https://github.com/LalatinaHub/LatinaSub",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "hamedcode/port-based-v2ray-configs",
+      "pushed_at": "2026-09-27T02:26:37Z",
+      "stars": 131,
+      "desc": "Free vless-vmess-shadowsocks-trojan-xray-V2ray Configs Updating Every 4h",
+      "url": "https://github.com/hamedcode/port-based-v2ray-configs",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "licheng527/Free-servers",
+      "pushed_at": "2026-09-27T02:24:32Z",
+      "stars": 145,
+      "desc": "永久免费订阅地址/1小时更新一次/高质量节点/白嫖/节点/vpn/白嫖/订阅/机场/翻墙/加速器/科学上网/教程/破解/软件/cloudflare/CF优选/ss/ssr/vmess/vless/v2ray/trojan/clash/tuic/anytls/singbox/http/socks5",
+      "url": "https://github.com/licheng527/Free-servers",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/anonymous-proxy-list-free",
+      "pushed_at": "2026-09-27T02:21:30Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/anonymous-proxy-list-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "dongyubin/Free-AppleId-Serve",
+      "pushed_at": "2026-09-27T02:10:53Z",
+      "stars": 3507,
+      "desc": "2026年9月每日更新🚀苹果美区账号 APPLE ID🚀免费Shadowrocket（小火箭）共享账号,Quantumult X，圈x，stash，小火箭节点，🚀 免费订阅地址，🚀 免费节点，🚀 每天更新一次，共享节点，节点质量高可用，完全免费。免费clash订阅地址，免费翻墙，免费科学上网，免费梯子，免费ss/v2r",
+      "url": "https://github.com/dongyubin/Free-AppleId-Serve",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Epodonios/v2ray-configs",
+      "pushed_at": "2026-09-27T02:07:26Z",
+      "stars": 3253,
+      "desc": "Free vless-vmess-shadowsocks-trojan-xray-V2ray Configs Updating Every 5 minutes",
+      "url": "https://github.com/Epodonios/v2ray-configs",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "myominn062-svg/mk-studio-vpn-service",
+      "pushed_at": "2026-09-27T01:53:47Z",
+      "stars": 2,
+      "desc": "MK Studio VPN Service — free auto-updated public V2Ray configs (SS, SSR, Trojan, VLESS, VMess, Hysteria2, TUIC)",
+      "url": "https://github.com/myominn062-svg/mk-studio-vpn-service",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Alirewa/V2ray-Configs",
+      "pushed_at": "2026-09-27T01:44:55Z",
+      "stars": 26,
+      "desc": "Free V2Ray / Xray subscription link — 1000+ configs auto-collected every 15 min from 180+ Telegram channels and GitHub sources. No login, no ads.",
+      "url": "https://github.com/Alirewa/V2ray-Configs",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "drmikecrypto/PulseConfigs",
+      "pushed_at": "2026-09-27T01:44:27Z",
+      "stars": 2,
+      "desc": "Free proxy configs for v2rayF — aggregated, health-tested, auto-updated (VLESS, VMess, Trojan, REALITY, Vision, Hy2, and more)",
+      "url": "https://github.com/drmikecrypto/PulseConfigs",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "rtwo2/FastNodes",
+      "pushed_at": "2026-09-27T01:44:26Z",
+      "stars": 92,
+      "desc": "🚀 FastNodes — hourly-updated V2Ray aggregator pulling from 750+ sources across GitHub, Telegram & the web. Drops only provably-dead nodes (dead domains, closed ",
+      "url": "https://github.com/rtwo2/FastNodes",
+      "archived": false,
+      "via": "user"
+    },
+    {
+      "repo": "proxifly/free-proxy-list",
+      "pushed_at": "2026-09-27T01:40:24Z",
+      "stars": 6815,
+      "desc": "🚀 Free HTTP, SOCKS4, & SOCKS5 proxy list * Updated every 5 minutes * and rotating proxy API (100+ countries)",
+      "url": "https://github.com/proxifly/free-proxy-list",
+      "archived": false,
+      "via": "user"
+    },
+    {
+      "repo": "Thordata/awesome-free-proxy-list",
+      "pushed_at": "2026-09-27T01:18:31Z",
+      "stars": 49,
+      "desc": "Daily-verified free proxy list with GeoIP country, latency tiers, anonymity ratings, survival streaks, Clash/V2Ray subscriptions and a live dashboard. Runs enti",
+      "url": "https://github.com/Thordata/awesome-free-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "vincent20240707/free-v2ray-nodes",
+      "pushed_at": "2026-09-27T01:01:32Z",
+      "stars": 0,
+      "desc": "Free V2Ray / Clash / Sing-box subscription nodes (auto collected public free nodes)",
+      "url": "https://github.com/vincent20240707/free-v2ray-nodes",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "steam-100/free-proxy-sub",
+      "pushed_at": "2026-09-27T00:49:55Z",
+      "stars": 6,
+      "desc": "Auto-updated free proxy subscription for Quantumult X & Clash",
+      "url": "https://github.com/steam-100/free-proxy-sub",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Nexuspt753/GitHub-Sub-Scanner",
+      "pushed_at": "2026-09-27T00:42:51Z",
+      "stars": 0,
+      "desc": "A GitHub-only wrapper that fetches V2Ray/xray configs from public subscription URLs, tests them, geolocates them, and publishes a public ranking — no server, no",
+      "url": "https://github.com/Nexuspt753/GitHub-Sub-Scanner",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "xyfqzy/free-nodes",
+      "pushed_at": "2026-09-27T00:38:33Z",
+      "stars": 167,
+      "desc": "免费节点订阅：Clash、V2RayN、Shadowrocket｜Base64 与 YAML 每 2 小时更新",
+      "url": "https://github.com/xyfqzy/free-nodes",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "freenodess/freenodess",
+      "pushed_at": "2026-09-27T00:22:46Z",
+      "stars": 6,
+      "desc": "免费节点,每天更新，支持 Clash、sing-box、v2ray。  可按国家订阅，可覆盖全球多个地区，如日本、美国、新加坡、香港、欧洲等   客户端支持：FlClash、Clash Verge、ClashX、v2rayNG、Shadowrocket、sing-box 等。",
+      "url": "https://github.com/freenodess/freenodess",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "sakha1370/OpenRay",
+      "pushed_at": "2026-09-27T00:21:13Z",
+      "stars": 246,
+      "desc": "OpenRay is one of the largest open-source collections of free proxy servers, running hourly pipelines to ensure high-quality lists by protocol and country, prom",
+      "url": "https://github.com/sakha1370/OpenRay",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/crawler-proxy-list",
+      "pushed_at": "2026-09-27T00:21:05Z",
+      "stars": 0,
+      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/crawler-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "xrayfree/free-ssr-ss-v2ray-vpn-clash",
+      "pushed_at": "2026-09-27T00:19:01Z",
+      "stars": 1800,
+      "desc": "长期免费维护 VLESS/ VMess / Trojan / SS / V2RAY / VPN / CLASH / 小火箭 免费节点订阅链接！电报群：https://t.me/xrayfree",
+      "url": "https://github.com/xrayfree/free-ssr-ss-v2ray-vpn-clash",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Danialsamadi/v2go",
+      "pushed_at": "2026-09-27T00:16:20Z",
+      "stars": 153,
+      "desc": "v2go is a blazingly fast Go V2Ray config aggregator that processes 20,000+ configurations in 11 seconds (99.7% faster than Python), automatically removing dupli",
+      "url": "https://github.com/Danialsamadi/v2go",
+      "archived": false,
+      "via": "user"
+    },
+    {
+      "repo": "ProxyScraper/ProxyScraper",
+      "pushed_at": "2026-09-27T00:15:59Z",
+      "stars": 226,
+      "desc": "Automatic and permanent proxy collection and update center for free (updated every hour)",
+      "url": "https://github.com/ProxyScraper/ProxyScraper",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "bambinaveron973/Advanced-Onion-Router-Full-Version-Unlocked",
+      "pushed_at": "2026-09-27T00:14:30Z",
+      "stars": 0,
+      "desc": "Download Advanced Onion Router — a proxy tool for Windows that ensures your online privacy with a free download. Enjoy features like HTTP header modification an",
+      "url": "https://github.com/bambinaveron973/Advanced-Onion-Router-Full-Version-Unlocked",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "Anonym0usWork1221/Free-Proxies",
+      "pushed_at": "2026-09-27T00:03:21Z",
+      "stars": 213,
+      "desc": "Update free every 2 hours",
+      "url": "https://github.com/Anonym0usWork1221/Free-Proxies",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "lerjtl/Testfree",
+      "pushed_at": "2026-09-27T00:00:55Z",
+      "stars": 23,
+      "desc": "🚀 免费订阅地址，🚀 免费节点，🚀 6小时更新一次，共享节点，节点质量高可用，完全免费。免费clash订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, 🚀 Updated every",
+      "url": "https://github.com/lerjtl/Testfree",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "skka3134/Free-servers",
+      "pushed_at": "2026-09-27T00:00:34Z",
+      "stars": 38,
+      "desc": "🚀 免费订阅地址，🚀 免费节点，🚀 6小时更新一次，共享节点，节点质量高可用，完全免费。免费clash订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, 🚀 Updated every",
+      "url": "https://github.com/skka3134/Free-servers",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxy-list-for-scraping",
+      "pushed_at": "2026-09-26T23:20:51Z",
+      "stars": 0,
+      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxy-list-for-scraping",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "skxxxkx666/freeport-manifest",
+      "pushed_at": "2026-09-26T22:57:36Z",
+      "stars": 0,
+      "desc": "Daily Clash and V2Ray subscription manifest built with Astro 7",
+      "url": "https://github.com/skxxxkx666/freeport-manifest",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "morpheusadam/v2ray-config",
+      "pushed_at": "2026-09-26T22:23:36Z",
+      "stars": 23,
+      "desc": "Free V2Ray subscription links, rebuilt from measurement every day. VLESS, VMess, Trojan, Shadowsocks, Hysteria2, TUIC and Reality configs, plus 29 ready-made su",
+      "url": "https://github.com/morpheusadam/v2ray-config",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/socks-proxy-list-free",
+      "pushed_at": "2026-09-26T21:20:25Z",
+      "stars": 0,
+      "desc": "Rotating HTTP / SOCKS4 / SOCKS5 proxies · Plain-text lists refreshed from https://proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/socks-proxy-list-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "asgharkapk/Sub-Config-Extractor",
+      "pushed_at": "2026-09-26T20:42:10Z",
+      "stars": 57,
+      "desc": "Sub-Config-Extractor is a powerful yet lightweight tool for extracting, decoding, and converting proxy subscription data into structured configuration files. It",
+      "url": "https://github.com/asgharkapk/Sub-Config-Extractor",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "freeb5d/kite-android",
+      "pushed_at": "2026-09-26T18:43:11Z",
+      "stars": 2,
+      "desc": "Free, open-source V2Ray / Xray VPN client for Android phones, tablets and Android TV. One universal APK · VLESS, VMess, Trojan, Shadowsocks · REALITY · subscrip",
+      "url": "https://github.com/freeb5d/kite-android",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/working-proxy-list",
+      "pushed_at": "2026-09-26T18:19:45Z",
+      "stars": 0,
+      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/working-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "zhangdunlong/free-v2ray-nodes",
+      "pushed_at": "2026-09-26T18:06:42Z",
+      "stars": 0,
+      "desc": "Daily filtered unique free V2Ray / Clash / Sing-box subscription nodes (deduplicated)",
+      "url": "https://github.com/zhangdunlong/free-v2ray-nodes",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "bassorel/mianfei-jiedian-dingyue2",
+      "pushed_at": "2026-09-26T16:30:16Z",
+      "stars": 0,
+      "desc": "Free V2Ray Config · Free V2Ray article link, import steps, and daily archive.",
+      "url": "https://github.com/bassorel/mianfei-jiedian-dingyue2",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxies-st-free",
+      "pushed_at": "2026-09-26T16:19:18Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxies-st-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxy-feed",
+      "pushed_at": "2026-09-26T13:18:38Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxy-feed",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxy-pool-free",
+      "pushed_at": "2026-09-26T07:17:20Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxy-pool-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "shubhamshendre/Free-Proxies",
+      "pushed_at": "2026-09-26T06:44:15Z",
+      "stars": 9,
+      "desc": "Free-Proxies offers free SOCKS5, SOCKS4, and HTTP proxies from public lists. Updated frequently so you can grab fresh proxies for your projects. 🐙",
+      "url": "https://github.com/shubhamshendre/Free-Proxies",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/updated-proxy-list",
+      "pushed_at": "2026-09-26T06:17:07Z",
+      "stars": 0,
+      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/updated-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "clashxw/clashxw.github.io",
+      "pushed_at": "2026-09-26T05:36:33Z",
+      "stars": 7,
+      "desc": "🚀 免费订阅地址，🚀 免费节点，共享节点，节点质量高可用，完全免费。免费ClashXW订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, shared node, high-quali",
+      "url": "https://github.com/clashxw/clashxw.github.io",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "mermeroo/V2RAY-CLASH-BASE64-Subscription.Links",
+      "pushed_at": "2026-09-26T04:17:53Z",
+      "stars": 525,
+      "desc": "Clash and V2ray and Base64 subscription links collected from GitHub and other public sources    -  V2ray 子链接  * CLASH  子链接    -  V2RAY   CLASH   BASE64   SUB  L",
+      "url": "https://github.com/mermeroo/V2RAY-CLASH-BASE64-Subscription.Links",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/live-proxy-list",
+      "pushed_at": "2026-09-26T04:16:41Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/live-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/mass-proxy-list",
+      "pushed_at": "2026-09-26T03:16:28Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/mass-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/open-proxy-list",
+      "pushed_at": "2026-09-26T01:16:02Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/open-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/checked-proxy-list",
+      "pushed_at": "2026-09-25T23:15:35Z",
+      "stars": 0,
+      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/checked-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/bulk-proxy-list",
+      "pushed_at": "2026-09-25T22:15:21Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/bulk-proxy-list",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/web-scraping-proxies",
+      "pushed_at": "2026-09-25T21:15:08Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/web-scraping-proxies",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxy-list-socks5",
+      "pushed_at": "2026-09-25T20:14:54Z",
+      "stars": 0,
+      "desc": "Mass proxy list for scraping & automation — free HTTP, SOCKS4, SOCKS5 endpoints · https://proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxy-list-socks5",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/proxy-list-http",
+      "pushed_at": "2026-09-25T19:14:41Z",
+      "stars": 0,
+      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/proxy-list-http",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/socks4-proxies-free",
+      "pushed_at": "2026-09-25T18:14:26Z",
+      "stars": 0,
+      "desc": "Working proxy list · HTTP, SOCKS4, SOCKS5 · Checked pool · Get premium access at proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/socks4-proxies-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "gnxD3RfTT2WE/socks5-proxies-free",
+      "pushed_at": "2026-09-25T17:14:13Z",
+      "stars": 0,
+      "desc": "Working proxy list · HTTP, SOCKS4, SOCKS5 · Checked pool · Get premium access at proxies.st",
+      "url": "https://github.com/gnxD3RfTT2WE/socks5-proxies-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "xiaohuozi248/free-node-config",
+      "pushed_at": "2026-09-24T09:47:45Z",
+      "stars": 0,
+      "desc": "Clash/FlClash free node subscription config (auto-updated, ASCII-safe)",
+      "url": "https://github.com/xiaohuozi248/free-node-config",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "xiaoji235/airport-free",
+      "pushed_at": "2026-09-23T02:01:12Z",
+      "stars": 550,
+      "desc": "Free nodes, automatically renews subscription every 3hours",
+      "url": "https://github.com/xiaoji235/airport-free",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "SzeChiaHao/FreeNodesDaily",
+      "pushed_at": "2026-09-22T15:09:29Z",
+      "stars": 1,
+      "desc": "免费节点 | 免费订阅 | 免费 clash 节点 | 免费 v2ray 节点 | 免费 ss 节点 | 免费 trojan 节点。每天自动抓取公开免费节点，真实隧道测速、按实测速度排序、剔除死节点，一键导出 Clash/mihomo、sing-box、v2rayN·v2rayNG、Shadowrocket、Shado",
+      "url": "https://github.com/SzeChiaHao/FreeNodesDaily",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "topv2raynode/topv2raynode.github.io",
+      "pushed_at": "2026-09-22T04:19:25Z",
+      "stars": 4,
+      "desc": "免费Top V2ray节点 🚀 免费订阅地址，🚀 免费节点，共享节点，节点质量高可用，完全免费。免费ClashXW订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, shared no",
+      "url": "https://github.com/topv2raynode/topv2raynode.github.io",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "freevpnssr/freevpnssr.github.io",
+      "pushed_at": "2026-09-22T04:12:42Z",
+      "stars": 10,
+      "desc": "🚀 免费订阅地址，🚀 免费节点，共享节点，节点质量高可用，完全免费。免费ClashXW订阅地址，免费翻墙、免费科学上网、免费梯子、免费ss/v2ray/trojan节点、谷歌商店、翻墙梯子。🚀 Free subscription address, 🚀 Free node, shared node, high-quali",
+      "url": "https://github.com/freevpnssr/freevpnssr.github.io",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "robram9572/free-proxy-airport",
+      "pushed_at": "2026-09-20T03:55:07Z",
+      "stars": 0,
+      "desc": "Self-healing Clash free subscription generated by GitHub Actions.",
+      "url": "https://github.com/robram9572/free-proxy-airport",
+      "archived": false,
+      "via": "search"
+    },
+    {
+      "repo": "sakazxc1400-creator/free-vpn-sub",
+      "pushed_at": "2026-09-17T04:50:58Z",
+      "stars": 5,
+      "desc": "Бесплатные VPN-серверы одной ссылкой. Обновление каждый час, только проверенные узлы, страна и задержка в названии. VLESS/Reality, VMess, Trojan, Shadowsocks, H",
+      "url": "https://github.com/sakazxc1400-creator/free-vpn-sub",
+      "archived": false,
+      "via": "search"
+    }
+  ]
+}

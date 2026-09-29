@@ -1,0 +1,95 @@
+# 手动触发的 WARP MASQUE 配置生成线：注册设备 → 渲染订阅 → 内核校验 → 上传产物。
+# 与 top100.yml 的自动筛选流水线互不相干；本 workflow 不依赖任何 secrets。
+# 产物契约（文件名/字段）见 docs/architecture.md。
+name: WARP MASQUE 订阅产物生成
+
+# 触发与权限都收在单行 flow 映射里：只读代码，不授予任何写权限。
+# artifact 保留期硬编码 1 天（产物含 WARP 私钥，不给长存），故不再暴露 retention 输入。
+on: {workflow_dispatch: {inputs: {device_name: {default: "gh-actions", description: WARP 后台显示的设备名, required: false}}}}
+permissions: {contents: read}
+
+jobs:
+  artifact:
+    runs-on: ubuntu-latest
+    env:
+      # 触发参数在 job 层收敛成普通 env，步骤里只用裸变量，不再写表达式
+      DEVICE_NAME: ${{ inputs.device_name || 'gh-actions' }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      # ---- 取 usque 最新版，二进制落在 RUNNER_TEMP 不污染工作区 ----
+      - name: 拉取 usque 最新版
+        id: usque
+        run: |-
+          set -o errexit -o nounset -o pipefail
+          REL=$(curl -fsSL https://api.github.com/repos/Diniboy1123/usque/releases/latest | jq -er '.tag_name')
+          VER="${REL#v}"
+          echo "version=${VER}" >> "$GITHUB_OUTPUT"
+          echo "usque ${VER}（release tag ${REL}）"
+          ZIP="$RUNNER_TEMP/usque.zip"
+          curl -fsSL -o "$ZIP" "https://github.com/Diniboy1123/usque/releases/download/${REL}/usque_${VER}_linux_amd64.zip"
+          unzip -oq "$ZIP" -d "$RUNNER_TEMP"
+          chmod u+x "$RUNNER_TEMP/usque"
+          # 尚无 config.json 时 version 子命令会先打一条 error，忽略即可
+          "$RUNNER_TEMP/usque" version 2>/dev/null | grep -i version || true
+
+      # ---- 注册 WARP 设备；日志只回显非敏感字段 ----
+      - name: 注册 WARP 设备
+        id: enroll
+        run: |-
+          set -o errexit -o nounset -o pipefail
+          "$RUNNER_TEMP/usque" register -a -n "$DEVICE_NAME"
+          [ -s ./config.json ]
+          # 字段不齐直接失败（等价于原来的取值报错），通过才回显；密钥不进日志
+          jq -e '.endpoint_v4 and .endpoint_v6 and .ipv4 and .ipv6' ./config.json > /dev/null
+          jq -er '"endpoint_v4 = \(.endpoint_v4)",
+                  "endpoint_v6 = \(.endpoint_v6)",
+                  "内网地址 = \(.ipv4) / \(.ipv6)"' ./config.json
+
+      - name: 渲染 mihomo 订阅
+        id: render
+        run: python3 ./scripts/gen_masque.py ./config.json ./dist
+
+      # ---- 用 mihomo Alpha 内核试加载，配置语法坏了当场报错 ----
+      - name: mihomo 内核加载校验
+        id: lint
+        run: |-
+          set -o errexit -o nounset -o pipefail
+          PKG=$(curl -fsSL https://api.github.com/repos/MetaCubeX/mihomo/releases \
+                | grep -o 'https://[^"]*mihomo-linux-amd64-alpha[^"]*\.gz' | head -n1)
+          [ -n "$PKG" ] || { echo "::error::没抓到 mihomo alpha 下载地址"; exit 1; }
+          GZ="$RUNNER_TEMP/mihomo.gz"
+          APP="$RUNNER_TEMP/mihomo"
+          CHK="$RUNNER_TEMP/mihomo-check"
+          curl -fsSL -o "$GZ" "$PKG"
+          gzip -dc "$GZ" > "$APP"
+          chmod u+x "$APP"
+          mkdir -p "$CHK"
+          cp ./dist/warp-masque.yaml "$CHK/config.yaml"
+          # -t 仅做配置解析，不启动服务
+          "$APP" -t -d "$CHK"
+          echo "mihomo 配置校验通过"
+
+      # ---- 凭据与两份产物归拢进 dist，缺一不可 ----
+      - name: 归集交付物
+        id: pack
+        run: |-
+          set -o errexit -o nounset -o pipefail
+          cat ./config.json > ./dist/usque-config.json
+          for need in warp-masque.yaml warp-masque-shadowrocket.txt; do
+            [ -s "./dist/$need" ] || { echo "缺少产物 $need"; exit 1; }
+          done
+          find ./dist -maxdepth 1 -type f -printf '%f  %s bytes\n' | sort
+
+      - name: 上传产物
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: warp-masque-config
+          # usque-config.json（含 WARP 私钥 PEM 原文）不进 artifact；
+          # yaml 正文里也有 private-key，故保留期硬编码 1 天，凭据不长存
+          path: |
+            ./dist/
+            !./dist/usque-config.json
+          retention-days: 1
+          if-no-files-found: "error"

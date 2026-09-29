@@ -1,0 +1,101 @@
+name: top100-nodes
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # 每小时（UTC，错开整点避开高峰）
+  workflow_dispatch:
+
+concurrency:
+  group: top100-nodes
+  cancel-in-progress: false
+
+permissions: {contents: read}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # 一次性验证：ubuntu-24.04 镜像自带系统 Python（3.12，≥3.10 满足），跑一次确认后可删本步
+      - name: 确认系统 Python 版本
+        run: python3 --version
+
+      # 系统 python3 替代 setup-python（ubuntu-24.04 自带 3.12，与原 setup-python 同版本）
+      # PEP 668：系统 Python 是 externally-managed，安装需 --break-system-packages；依赖钉版
+      - name: 安装依赖
+        run: python3 -m pip install --break-system-packages -q requests==2.34.2
+
+      - name: "1. 多线程抓取 100+ 订阅 + 解析 + 去重"
+        run: python3 .github/scripts/top_collect.py
+
+      - name: "2a. TCP 粗筛（asyncio 节流全量测）"
+        env:
+          TCP_PACE: "3000"   # 4000/s 实测 med 174ms 已现排队（2000/s 才 24ms）；服务稳定优先，收 3000 留余量
+          TCP_CONC: "6000"
+        run: python3 .github/scripts/top_tcp.py
+
+      # 缓存 mihomo 二进制：命中时下个步骤经 MIHOMO_BIN 直接复用，省去每轮下载 alpha
+      # path = 脚本 tempfile.gettempdir()/mihomo_top 的实际落盘处；miss 时脚本照常下载、job 末自动存档
+      - name: 缓存 mihomo 二进制
+        id: mihomo-cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/mihomo_top
+          key: mihomo-alpha-${{ hashFiles('.github/scripts/top_proto.py') }}
+          restore-keys: |
+            mihomo-alpha-
+
+      - name: "2b. 协议初筛（mihomo 多实例并行，淘汰协议死假节点）"
+        env:
+          MIHOMO_SHARDS: "8"   # 8 实例分片；mihomo 主要是网络 I/O 不吃 CPU，跑完对比 4 实例基线
+          # 精确命中才指过去（文件已恢复到 /tmp/mihomo_top）；未命中留空串，脚本按原逻辑自动下载
+          MIHOMO_BIN: ${{ steps.mihomo-cache.outputs.cache-hit == 'true' && '/tmp/mihomo_top' || '' }}
+        run: python3 .github/scripts/top_proto.py
+
+      # 跨轮 IP 结果缓存：geo/proxy 判定 24h 内不变 → ip_cache.json 命中则零外查，
+      # 把真实外查压到最低（19k 次/天的查询绝大部分是重复 IP，查询链全免 key 免配额）。
+      # key 带 run_id 每轮唯一（精确命中的 cache 不会再保存，固定 key 会让缓存永远不更新），
+      # restore-keys 前缀匹配取最近一轮快照；TTL 判定在脚本内（24h 过期自动重查）。
+      - name: 恢复 IP 结果缓存
+        uses: actions/cache@v4
+        with:
+          path: ip_cache.json
+          key: ip-cache-${{ github.run_id }}
+          restore-keys: |
+            ip-cache-
+
+      - name: "3. 多线程连节点测纯净度"
+        run: python3 .github/scripts/top_purity.py
+
+      - name: "4. 综合优选 top100 → 写 CF KV"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+        run: python3 .github/scripts/top_select.py
+
+      # 关键：订阅读的是 KV 缓存 config:yaml，只写 top100:nodes 不触发重建的话
+      # 用户拿到的永远是上一次 rebuild 的旧配置——必须显式触发。
+      - name: "5. 触发 Worker 重建（让新 top100 进订阅）"
+        env:
+          WORKER_PUSH_URL: ${{ secrets.WORKER_PUSH_URL }}
+        run: |
+          set -uo pipefail
+          if [ -z "${WORKER_PUSH_URL:-}" ]; then
+            # 长期缺这个 secret = 部署配置错误：KV 更新永远进不了订阅，必须红
+            echo "::error::没配 WORKER_PUSH_URL secret，无法触发重建（KV 已更新但订阅停留旧数据）"
+            exit 1
+          fi
+          URL="${WORKER_PUSH_URL%/}/rebuild"   # 去尾斜杠：push 路由按 /push/<token>/<kind> 解析
+          CODE=$(curl -s -o /tmp/rebuild.json -w '%{http_code}' -X POST "$URL")
+          echo "HTTP $CODE"
+          cat /tmp/rebuild.json; echo
+          [ "$CODE" = "200" ] || { echo "::error::rebuild 返回 $CODE，订阅仍是旧数据"; exit 1; }
+
+      - name: 摘要
+        if: always()
+        run: |
+          echo "=== top100 摘要 ==="
+          cat top100_summary.json 2>/dev/null || echo "(无摘要)"

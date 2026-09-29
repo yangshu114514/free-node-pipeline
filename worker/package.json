@@ -1,0 +1,16 @@
+{
+  "name": "free-node-subscription-worker",
+  "description": "免费节点订阅服务 Worker（Cloudflare）",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "esbuild src/index.js --bundle --format=esm --target=es2022 --outfile=dist/worker.js --banner:js=\"// 免费节点订阅 Worker —— 单文件版\\n// 由 src/ 打包而成，网页部署用。改代码请改 src/ 后重新 npm run build。\\n\"",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4",
+    "esbuild": "^0.28.2"
+  }
+}

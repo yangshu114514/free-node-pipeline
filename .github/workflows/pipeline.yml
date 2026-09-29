@@ -1,0 +1,101 @@
+name: 订阅数据统一流水线
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 */2 * * *'      # 每 2 小时
+
+concurrency:
+  group: subscribe-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      # 一次性验证：ubuntu-24.04 镜像自带系统 Python（3.12，≥3.10 满足），跑一次确认后可删本步
+      - name: 确认系统 Python 版本
+        run: python3 --version
+      # 本流水线只跑 probe_warp.py / cf_kv.py，均只用标准库——原"装依赖"步骤随之删除
+
+      # 缓存 mihomo 二进制：命中时下个步骤经 MIHOMO_BIN 直接复用，省去每轮下载 alpha
+      # path = 脚本 tempfile.gettempdir()/mihomo 的实际落盘处；miss 时脚本照常下载、job 末自动存档
+      - name: 缓存 mihomo 二进制
+        id: mihomo-cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/mihomo
+          key: mihomo-alpha-${{ hashFiles('.github/scripts/probe_warp.py') }}
+          restore-keys: |
+            mihomo-alpha-
+
+      # 本流水线现只负责 WARP 接入点实测轮换（warp:endpoints，WARP 直连兜底用）。
+      # ip2free/webshare/四站等旧出口源已随架构重构移除；top100 精选源由 top100.yml 独立负责。
+      - name: 测 WARP 接入点
+        id: warp
+        continue-on-error: true
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # probe_warp 读 warp:device（设备复用判断）同样走 CF KV API，缺 NS ID 会 degrade 跳过
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+          # 精确命中才指过去（文件已恢复到 /tmp/mihomo）；未命中留空串，脚本按原逻辑自动下载
+          MIHOMO_BIN: ${{ steps.mihomo-cache.outputs.cache-hit == 'true' && '/tmp/mihomo' || '' }}
+        run: |
+          set -uo pipefail
+          mkdir -p dist
+          python3 .github/scripts/probe_warp.py dist/warp-endpoints.json
+          # 脚本自带降级：mihomo 失败 / 0 可用 时 exit 0 且不要求写 KV
+
+      - name: 写 KV
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # cf_kv._url() 把 CF_KV_NAMESPACE_ID 当必填，缺了直接 RuntimeError →
+          # 此步骤每次都失败、后续 rebuild 也轮不到执行（warp:endpoints 长期不更新）
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+        run: |
+          set -uo pipefail
+          if [ -s dist/warp-endpoints.json ]; then
+            python3 .github/scripts/cf_kv.py put warp:endpoints dist/warp-endpoints.json
+          else
+            echo "warp-endpoints.json 不存在或为空，跳过 warp:endpoints（旧数据仍有效）"
+          fi
+
+      - name: 触发 Worker 重建
+        env:
+          WORKER_PUSH_URL: ${{ secrets.WORKER_PUSH_URL }}
+        run: |
+          set -uo pipefail
+          if [ -z "${WORKER_PUSH_URL:-}" ]; then
+            echo "没配 WORKER_PUSH_URL secret，跳过触发重建（数据已写 KV，下一轮或手动刷新即生效）"
+            exit 0
+          fi
+          # 必须去掉尾斜杠：push 路由按 /push/<token>/<kind> 解析，
+          # 多一个斜杠会让 kind 变成 "/rebuild" 而误落到默认分支。
+          URL="${WORKER_PUSH_URL%/}/rebuild"
+          CODE=$(curl -s -o /tmp/rebuild.json -w '%{http_code}' -X POST "$URL")
+          echo "HTTP $CODE"
+          cat /tmp/rebuild.json; echo
+          [ "$CODE" = "200" ] || { echo "触发重建失败（KV 已写入，旧配置仍有效，下轮会用新数据重建）"; exit 1; }
+
+      - name: 摘要
+        if: always()
+        run: |
+          set -uo pipefail
+          {
+            echo '## 订阅数据统一流水线'
+            echo
+            if [ -s dist/warp-endpoints.json ]; then
+              echo "WARP 接入点可用: $(jq '.available' dist/warp-endpoints.json) / $(jq '.total' dist/warp-endpoints.json)"
+              echo "已写入 KV warp:endpoints"
+            else
+              echo "WARP 接入点实测跳过/失败，KV 旧数据仍有效"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

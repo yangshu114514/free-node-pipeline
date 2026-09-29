@@ -1,0 +1,34 @@
+# ---- 构建产物、依赖与工具缓存目录 ----
+check/
+/dist/
+.wrangler/
+ruleset/
+worker/package-lock.json
+node_modules/
+
+# ---- 流水线中间产物：每轮评测整体重写，只留最终结果（不入库） ----
+latency.json
+purity.json
+/ip_cache.json
+node_pool.json
+tcp_cands.json
+top100_detail.json
+top100_summary.json
+
+# ---- Python 字节码缓存 ----
+__pycache__/
+*.pyc
+
+# ---- 下划线开头 = 一次性诊断脚本（不入库） ----
+/_*.py
+
+# ---- 抓取凭据与外部二进制/压缩包（不入库） ----
+usque.zip
+usque
+mihomo.gz
+mihomo
+config.json
+opera-proxy
+
+# 网页部署要用的单文件，必须随仓库提交，对它解除忽略
+!worker/dist/
