@@ -18,17 +18,41 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
-      # ---- 取 usque 最新版，二进制落在 RUNNER_TEMP 不污染工作区 ----
-      - name: 拉取 usque 最新版
+      # ---- 取 usque **钉版 v4.2.1**（钉死不跟 releases/latest），二进制落 RUNNER_TEMP 不污染工作区 ----
+      # 供应链门禁：sha256 双源核验——① 硬编码 EXPECTED_SHA256（只存在本仓库、随代码受审）
+      # ② 官方 release 的 checksums.txt 对应行。两个来源一致才放行；任一缺失/不符 → 红灯
+      # 拒绝使用未验证二进制（防上游 release 被替换/投毒）。升版 = 改下面三行并同步更新哈希。
+      - name: 拉取 usque（钉版 v4.2.1 + sha256 双源校验）
         id: usque
         run: |-
           set -o errexit -o nounset -o pipefail
-          REL=$(curl -fsSL https://api.github.com/repos/Diniboy1123/usque/releases/latest | jq -er '.tag_name')
-          VER="${REL#v}"
-          echo "version=${VER}" >> "$GITHUB_OUTPUT"
-          echo "usque ${VER}（release tag ${REL}）"
-          ZIP="$RUNNER_TEMP/usque.zip"
-          curl -fsSL -o "$ZIP" "https://github.com/Diniboy1123/usque/releases/download/${REL}/usque_${VER}_linux_amd64.zip"
+          USQUE_VER="4.2.1"
+          EXPECTED_SHA256="4117e20695078af9c11edecd1a826c009bbc7ea0b7f64458612b4198910bc313"
+          ZIP_NAME="usque_${USQUE_VER}_linux_amd64.zip"
+          REL="v${USQUE_VER}"
+          echo "version=${USQUE_VER}" >> "$GITHUB_OUTPUT"
+          echo "usque ${USQUE_VER}（钉版，不再跟 releases/latest）"
+          ZIP="$RUNNER_TEMP/${ZIP_NAME}"
+          curl -fsSL -o "$ZIP" "https://github.com/Diniboy1123/usque/releases/download/${REL}/${ZIP_NAME}"
+          # 源① 硬编码哈希（随本仓库代码走）
+          ACTUAL=$(sha256sum "$ZIP" | awk '{print $1}')
+          if [ "$ACTUAL" != "$EXPECTED_SHA256" ]; then
+            echo "::error::usque sha256 与 workflow 内硬编码值不符（actual ${ACTUAL}）——上游资产被换过，拒绝使用"
+            exit 1
+          fi
+          # 源② 官方 checksums.txt 对应行（缺失 = 红线：宁可无校验来源也不放行）
+          curl -fsSL -o "$RUNNER_TEMP/checksums.txt" \
+            "https://github.com/Diniboy1123/usque/releases/download/${REL}/checksums.txt"
+          OFFICIAL_SHA256=$(awk -v f="$ZIP_NAME" '$2 == f {print $1}' "$RUNNER_TEMP/checksums.txt")
+          if [ -z "$OFFICIAL_SHA256" ]; then
+            echo "::error::官方 checksums.txt 里找不到 ${ZIP_NAME} 的哈希，拒绝使用"
+            exit 1
+          fi
+          if [ "$OFFICIAL_SHA256" != "$ACTUAL" ]; then
+            echo "::error::usque sha256 与官方 checksums.txt 不符（official ${OFFICIAL_SHA256}）——资产被篡改，拒绝使用"
+            exit 1
+          fi
+          echo "sha256 双源校验通过：${ACTUAL:0:12}…"
           unzip -oq "$ZIP" -d "$RUNNER_TEMP"
           chmod u+x "$RUNNER_TEMP/usque"
           # 尚无 config.json 时 version 子命令会先打一条 error，忽略即可
