@@ -19,16 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
-      # 一次性验证：ubuntu-24.04 镜像自带系统 Python（3.12，≥3.10 满足），跑一次确认后可删本步
-      - name: 确认系统 Python 版本
-        run: python3 --version
-      # 本流水线只跑 probe_warp.py / cf_kv.py，均只用标准库——原"装依赖"步骤随之删除
+      # 本流水线只跑 probe_warp.py / cf_kv.py，均只用标准库（系统自带 python3），无安装步骤
 
       # 缓存 mihomo 二进制：命中时下个步骤经 MIHOMO_BIN 直接复用，省去每轮下载 alpha
       # path = 脚本 tempfile.gettempdir()/mihomo 的实际落盘处；miss 时脚本照常下载、job 末自动存档
       - name: 缓存 mihomo 二进制
         id: mihomo-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: /tmp/mihomo
           key: mihomo-alpha-${{ hashFiles('.github/scripts/probe_warp.py') }}

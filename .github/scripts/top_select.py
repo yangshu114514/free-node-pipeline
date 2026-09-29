@@ -1,4 +1,4 @@
-"""top100 ④：读 purity.json → 过滤非中 + 综合打分（纯净优先，速度次之）→ top100 → 写 KV
+"""top100 ④：读 purity.json → 过滤非中 + 打分（仅纯净度档；延迟只当 DELAY_CAP 及格线）→ top100 → 写 KV
 KV 键 top100:nodes（Worker 读的节点数组）；另存 detail/summary 供查。
 env: CLOUDFLARE_API_TOKEN / CF_ACCOUNT_ID / CF_KV_NAMESPACE_ID（缺则跳过写KV，只出文件）
 本机测可设 PROXY=http://127.0.0.1:7897 让 CF API 走代理。"""

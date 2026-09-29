@@ -1,8 +1,8 @@
 {
   "generated_at": "2026-09-27T13:53:02",
   "cutoff": "2026-08-15",
-  "total_candidates": 122,
-  "active": 122,
+  "total_candidates": 99,
+  "active": 99,
   "sources": [
     {
       "repo": "hproxy-com/free-proxy-list",
@@ -17,7 +17,7 @@
       "repo": "ebrasha/abdal-proxy-hub",
       "pushed_at": "2026-09-27T05:50:30Z",
       "stars": 50,
-      "desc": "A curated list of free, tested proxies by EbraSha — updated every 10 minutes for maximum availability and freedom. Also on Telegram: https://t.me/AbdalProxyBot",
+      "desc": "A curated list of free, tested proxies by EbraSha — updated every 10 minutes for maximum availability and freedom.",
       "url": "https://github.com/ebrasha/abdal-proxy-hub",
       "archived": false,
       "via": "search"
@@ -338,15 +338,6 @@
       "via": "search"
     },
     {
-      "repo": "gnxD3RfTT2WE/proxy-checker-list",
-      "pushed_at": "2026-09-27T05:22:10Z",
-      "stars": 0,
-      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxy-checker-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
       "repo": "anonymouskeys/Free-configs-",
       "pushed_at": "2026-09-27T05:18:20Z",
       "stars": 10,
@@ -545,24 +536,6 @@
       "via": "search"
     },
     {
-      "repo": "anarasius-1913/Advanced-Onion-Router",
-      "pushed_at": "2026-09-27T03:08:29Z",
-      "stars": 0,
-      "desc": "Download Advanced Onion Router — a privacy-focused proxy tool for Windows with free download. Browse anonymously using advanced features like SOCKS support, HTT",
-      "url": "https://github.com/anarasius-1913/Advanced-Onion-Router",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "asedywestwood0/Advanced-Onion-Router-Full-Version",
-      "pushed_at": "2026-09-27T03:02:04Z",
-      "stars": 0,
-      "desc": "Advanced Onion Router is a free full-version proxies software for Windows that enables anonymous web browsing and protects your privacy online. With advanced fe",
-      "url": "https://github.com/asedywestwood0/Advanced-Onion-Router-Full-Version",
-      "archived": false,
-      "via": "search"
-    },
-    {
       "repo": "awesome-vpn/awesome-vpn",
       "pushed_at": "2026-09-27T02:51:58Z",
       "stars": 6485,
@@ -595,15 +568,6 @@
       "stars": 145,
       "desc": "永久免费订阅地址/1小时更新一次/高质量节点/白嫖/节点/vpn/白嫖/订阅/机场/翻墙/加速器/科学上网/教程/破解/软件/cloudflare/CF优选/ss/ssr/vmess/vless/v2ray/trojan/clash/tuic/anytls/singbox/http/socks5",
       "url": "https://github.com/licheng527/Free-servers",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/anonymous-proxy-list-free",
-      "pushed_at": "2026-09-27T02:21:30Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/anonymous-proxy-list-free",
       "archived": false,
       "via": "search"
     },
@@ -734,19 +698,10 @@
       "via": "search"
     },
     {
-      "repo": "gnxD3RfTT2WE/crawler-proxy-list",
-      "pushed_at": "2026-09-27T00:21:05Z",
-      "stars": 0,
-      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/crawler-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
       "repo": "xrayfree/free-ssr-ss-v2ray-vpn-clash",
       "pushed_at": "2026-09-27T00:19:01Z",
       "stars": 1800,
-      "desc": "长期免费维护 VLESS/ VMess / Trojan / SS / V2RAY / VPN / CLASH / 小火箭 免费节点订阅链接！电报群：https://t.me/xrayfree",
+      "desc": "长期免费维护 VLESS/ VMess / Trojan / SS / V2RAY / VPN / CLASH / 小火箭 免费节点订阅链接！",
       "url": "https://github.com/xrayfree/free-ssr-ss-v2ray-vpn-clash",
       "archived": false,
       "via": "search"
@@ -766,15 +721,6 @@
       "stars": 226,
       "desc": "Automatic and permanent proxy collection and update center for free (updated every hour)",
       "url": "https://github.com/ProxyScraper/ProxyScraper",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "bambinaveron973/Advanced-Onion-Router-Full-Version-Unlocked",
-      "pushed_at": "2026-09-27T00:14:30Z",
-      "stars": 0,
-      "desc": "Download Advanced Onion Router — a proxy tool for Windows that ensures your online privacy with a free download. Enjoy features like HTTP header modification an",
-      "url": "https://github.com/bambinaveron973/Advanced-Onion-Router-Full-Version-Unlocked",
       "archived": false,
       "via": "search"
     },
@@ -806,15 +752,6 @@
       "via": "search"
     },
     {
-      "repo": "gnxD3RfTT2WE/proxy-list-for-scraping",
-      "pushed_at": "2026-09-26T23:20:51Z",
-      "stars": 0,
-      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxy-list-for-scraping",
-      "archived": false,
-      "via": "search"
-    },
-    {
       "repo": "skxxxkx666/freeport-manifest",
       "pushed_at": "2026-09-26T22:57:36Z",
       "stars": 0,
@@ -829,15 +766,6 @@
       "stars": 23,
       "desc": "Free V2Ray subscription links, rebuilt from measurement every day. VLESS, VMess, Trojan, Shadowsocks, Hysteria2, TUIC and Reality configs, plus 29 ready-made su",
       "url": "https://github.com/morpheusadam/v2ray-config",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/socks-proxy-list-free",
-      "pushed_at": "2026-09-26T21:20:25Z",
-      "stars": 0,
-      "desc": "Rotating HTTP / SOCKS4 / SOCKS5 proxies · Plain-text lists refreshed from https://proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/socks-proxy-list-free",
       "archived": false,
       "via": "search"
     },
@@ -860,15 +788,6 @@
       "via": "search"
     },
     {
-      "repo": "gnxD3RfTT2WE/working-proxy-list",
-      "pushed_at": "2026-09-26T18:19:45Z",
-      "stars": 0,
-      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/working-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
       "repo": "zhangdunlong/free-v2ray-nodes",
       "pushed_at": "2026-09-26T18:06:42Z",
       "stars": 0,
@@ -887,47 +806,11 @@
       "via": "search"
     },
     {
-      "repo": "gnxD3RfTT2WE/proxies-st-free",
-      "pushed_at": "2026-09-26T16:19:18Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxies-st-free",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/proxy-feed",
-      "pushed_at": "2026-09-26T13:18:38Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxy-feed",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/proxy-pool-free",
-      "pushed_at": "2026-09-26T07:17:20Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxy-pool-free",
-      "archived": false,
-      "via": "search"
-    },
-    {
       "repo": "shubhamshendre/Free-Proxies",
       "pushed_at": "2026-09-26T06:44:15Z",
       "stars": 9,
       "desc": "Free-Proxies offers free SOCKS5, SOCKS4, and HTTP proxies from public lists. Updated frequently so you can grab fresh proxies for your projects. 🐙",
       "url": "https://github.com/shubhamshendre/Free-Proxies",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/updated-proxy-list",
-      "pushed_at": "2026-09-26T06:17:07Z",
-      "stars": 0,
-      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/updated-proxy-list",
       "archived": false,
       "via": "search"
     },
@@ -946,96 +829,6 @@
       "stars": 525,
       "desc": "Clash and V2ray and Base64 subscription links collected from GitHub and other public sources    -  V2ray 子链接  * CLASH  子链接    -  V2RAY   CLASH   BASE64   SUB  L",
       "url": "https://github.com/mermeroo/V2RAY-CLASH-BASE64-Subscription.Links",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/live-proxy-list",
-      "pushed_at": "2026-09-26T04:16:41Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/live-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/mass-proxy-list",
-      "pushed_at": "2026-09-26T03:16:28Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/mass-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/open-proxy-list",
-      "pushed_at": "2026-09-26T01:16:02Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/open-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/checked-proxy-list",
-      "pushed_at": "2026-09-25T23:15:35Z",
-      "stars": 0,
-      "desc": "Updated free proxy collection — HTTP and SOCKS feeds from Proxies.st · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/checked-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/bulk-proxy-list",
-      "pushed_at": "2026-09-25T22:15:21Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/bulk-proxy-list",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/web-scraping-proxies",
-      "pushed_at": "2026-09-25T21:15:08Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/web-scraping-proxies",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/proxy-list-socks5",
-      "pushed_at": "2026-09-25T20:14:54Z",
-      "stars": 0,
-      "desc": "Mass proxy list for scraping & automation — free HTTP, SOCKS4, SOCKS5 endpoints · https://proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxy-list-socks5",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/proxy-list-http",
-      "pushed_at": "2026-09-25T19:14:41Z",
-      "stars": 0,
-      "desc": "Free Proxies.st HTTP & SOCKS proxy list — checked, updated daily · Bulk txt feeds · proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/proxy-list-http",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/socks4-proxies-free",
-      "pushed_at": "2026-09-25T18:14:26Z",
-      "stars": 0,
-      "desc": "Working proxy list · HTTP, SOCKS4, SOCKS5 · Checked pool · Get premium access at proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/socks4-proxies-free",
-      "archived": false,
-      "via": "search"
-    },
-    {
-      "repo": "gnxD3RfTT2WE/socks5-proxies-free",
-      "pushed_at": "2026-09-25T17:14:13Z",
-      "stars": 0,
-      "desc": "Working proxy list · HTTP, SOCKS4, SOCKS5 · Checked pool · Get premium access at proxies.st",
-      "url": "https://github.com/gnxD3RfTT2WE/socks5-proxies-free",
       "archived": false,
       "via": "search"
     },

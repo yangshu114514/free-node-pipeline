@@ -5,7 +5,7 @@
 **每个阶段是独立脚本**（`.github/scripts/top_*.py`），产物 json 落盘在仓库根，跑下一步不必重跑上一步——单步重跑只需按顺序准备上一步的输入文件。
 
 ```
-sources_active.json（122 源）
+sources_active.json（99 源）
    │ 1. top_collect.py
    ▼
 node_pool.json ──▶ 2a. top_tcp.py ──▶ tcp_cands.json
@@ -20,14 +20,14 @@ node_pool.json ──▶ 2a. top_tcp.py ──▶ tcp_cands.json
 
 ## 阶段 1：抓取 — `top_collect.py`
 
-- **输入**：`sources_active.json`（122 个活跃源）。
+- **输入**：`sources_active.json`（99 个活跃源）。
 - **输出**：`node_pool.json`，节点格式 `{proto, server, port, ident, raw}`，`raw` 是完整原始 URI（含 sni/tls/network/path），下游协议测与 Worker 转换都从 `raw` 恢复参数。
 - **做什么**：每源先抓 README 找额外订阅 URL，再试 ≤8 个候选路径；多格式解析（vmess/ss/vless/trojan/hysteria2/hy2/tuic + base64 文本 + 裸 `IP:port` 列表）；按 `(proto, server, port, ident)` 去重并过滤非法地址（回环/私网/链路本地/保留/多播）。
 - **关键参数**（脚本顶部常量，改动看 `[诊断]/[最慢源]` 输出校准）：
 
   | 常量 | 值 | 含义 |
   |---|---|---|
-  | `SOURCE_WORKERS` | 48 | 源级并发，波数 ≈ ceil(122/48) = 3 |
+  | `SOURCE_WORKERS` | 48 | 源级并发，波数 ≈ ceil(99/48) = 3 |
   | `PATH_WORKERS` | 192 | 全局取文本线程池，线程局部 keep-alive Session 跨源复用连接 |
   | `SOURCE_BUDGET` | 10 s | 单源总耗时预算，超时熔断放弃剩余路径 |
   | `T_README` / `T_PATH` | (3,5) / (4,8) s | 连接/读超时；404 即时返回不受影响，挂起源 2–3 倍速放弃 |
@@ -63,7 +63,7 @@ node_pool.json ──▶ 2a. top_tcp.py ──▶ tcp_cands.json
   | `MIHOMO_SHARDS`（top100.yml 设） | **8** | 分片实例数（脚本默认 4）；`-t` 预检与启动并行，控制端口从 9097 起按片递增 |
   | `DELAY_TMO` | 5000 ms | 成功节点 delay max 4107ms，5s 无损；原 12s 让 6631 个死节点各白等 7s |
   | `CERT_URLS` | cloudflare.com + chatgpt.com | 出口证书自证目标（常量）：https delay 校验证书，复测（间隔 `CERT_RETRY_GAP=2s`）仍 fail 且非 Timeout 即剔除；仅对协议活节点探测，成本 ~2800 次请求/轮（512 并发下约 25s） |
-  | `TOTAL_DELAY_WORKERS` | 256 | delay 是网络等待不吃 CPU |
+  | `TOTAL_DELAY_WORKERS` | 512 | delay 是网络等待不吃 CPU（128→256→512 阶梯实测，见 top_proto 注释） |
   | `TOP_N` | 1000 | 进入下一阶段的数量 |
   | `ALIVE_FLOOR` | 100 | **交付下限**：筛后进入下一阶段的节点 < 100 → `::error::` + exit 1（`latency.json` 仍落盘供诊断，防止塌方轮静默传给下游） |
 
@@ -108,9 +108,9 @@ curl -X POST "$URL"
 
 | 步骤 | 耗时 | 关键手段 |
 |---|---|---|
-| 1 抓取 122 源 | ~1 min | keep-alive 连接复用、单源 10s 熔断、48 源并发 |
+| 1 抓取 99 源 | ~1 min | keep-alive 连接复用、单源 10s 熔断、48 源并发 |
 | 2a TCP 粗筛 43.7 万 | ~1.6 min | asyncio + pacer 节流 3000/s、端点去重回填 |
-| 2b 协议初筛 5 万 | ~2.5 min | 8 实例并行 `-t` 预检、delay 超时 5s、256 并发、出口证书自证剔除假证书出口 |
+| 2b 协议初筛 5 万 | ~2.5 min | 8 实例并行 `-t` 预检、delay 超时 5s、512 并发、出口证书自证剔除假证书出口 |
 | 3 + 4 纯净度与优选写 KV | ~10 s | ip-api 5 并发 + 45/min 限速 |
 | **总计** | **~5.5 min** | 基线 20.5 min → 优化后约 5.45–5.5 min（约 3.8 倍） |
 

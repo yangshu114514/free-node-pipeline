@@ -18,10 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      # 一次性验证：ubuntu-24.04 镜像自带系统 Python（3.12，≥3.10 满足），跑一次确认后可删本步
-      - name: 确认系统 Python 版本
-        run: python3 --version
-
       # 系统 python3 替代 setup-python（ubuntu-24.04 自带 3.12，与原 setup-python 同版本）
       # PEP 668：系统 Python 是 externally-managed，安装需 --break-system-packages；依赖钉版
       - name: 安装依赖
@@ -40,7 +36,7 @@ jobs:
       # path = 脚本 tempfile.gettempdir()/mihomo_top 的实际落盘处；miss 时脚本照常下载、job 末自动存档
       - name: 缓存 mihomo 二进制
         id: mihomo-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: /tmp/mihomo_top
           key: mihomo-alpha-${{ hashFiles('.github/scripts/top_proto.py') }}
@@ -59,7 +55,7 @@ jobs:
       # key 带 run_id 每轮唯一（精确命中的 cache 不会再保存，固定 key 会让缓存永远不更新），
       # restore-keys 前缀匹配取最近一轮快照；TTL 判定在脚本内（24h 过期自动重查）。
       - name: 恢复 IP 结果缓存
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ip_cache.json
           key: ip-cache-${{ github.run_id }}

@@ -1,7 +1,7 @@
 """top100 ①：读活跃源 → 并发探测订阅URL → 抓取 → 多格式解析（保留完整 raw URI）→ 去重(含非法地址过滤)
 → node_pool.json
 节点格式: {"proto","server","port","ident","raw"}  raw=原始完整URI（含 sni/tls/network/path 等参数），
-下游 top_latency 转 mihomo 测协议延迟、config.js 转 clash 节点都从 raw 恢复参数。
+下游 top_proto 转 mihomo 测协议延迟、config.js 转 clash 节点都从 raw 恢复参数。
 Actions 海外直连；本机测试: PROXY=http://127.0.0.1:7897 python top_collect.py
 
 【耗时诊断结论（瓶颈定位）】
@@ -38,7 +38,7 @@ LOCAL_PROXY = os.environ.get("PROXY", "")
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) curl/8.0"}
 
 # ---- 调度层常量（改完看 [诊断]/[最慢源] 输出校准，勿动解析逻辑）----
-SOURCE_WORKERS = 48     # 源级并发：总耗时≈波数×单源尾延迟，波数=ceil(122/48)=3
+SOURCE_WORKERS = 48     # 源级并发：总耗时≈波数×单源尾延迟，波数=ceil(99/48)=3
 PATH_WORKERS = 192      # 全局取文本线程池：长寿线程复用 keep-alive 连接（跨源共享）
 SOURCE_BUDGET = 10.0    # 单源总耗时预算(秒)，超出即熔断放弃剩余路径（原坏源可挂满整波）
 T_README = (3, 5)       # README 超时（连接3s/读5s）：只为发现额外订阅URL，慢则快弃
@@ -108,7 +108,9 @@ def _b64d(s):
 
 
 def _uri_lines(text):
-    return re.findall(r"(?:vmess|vless|trojan|ss|ssr|hysteria2|hy2|tuic)://[^\s\"'<>]+",
+    # 只收下游（top_proto 协议测 / config.js 转换）真正支持的协议——
+    # ssr/tuic 曾在此识别但全链路无转换分支，进池即被静默丢弃还白耗 TCP 探测，已撤
+    return re.findall(r"(?:vmess|vless|trojan|ss|hysteria2|hy2)://[^\s\"'<>]+",
                       text, re.I)
 
 

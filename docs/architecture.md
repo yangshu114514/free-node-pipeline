@@ -74,7 +74,7 @@ POST https://<worker>/push/<令牌>/rebuild
 
 ## 配置组装（`worker/src/config.js`）
 
-`buildConfig(warp, warpEp, top100Nodes)` → `{ yaml, entries, warpEndpoints, top100 }`。
+`buildConfig(warp, warpEp, top100Nodes, dataStamp)` → `{ yaml, entries, warpEndpoints, top100 }`（`dataStamp` 缺失时用 meta.updatedAt 兜底，保证 ETag 数据新鲜度）。
 
 top100 节点命名规则（`topName`）：**`地区-IP`**（如 `JP-42.51.25.69`），地区取 KV `top100:nodes` 的 `geo` 字段，缺失或非两位国家码兜底 `XX`；同名冲突（同 IP 多端口/协议）依次自动追加 `:端口`、`#序号` 保证唯一。
 

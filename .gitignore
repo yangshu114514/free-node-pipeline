@@ -30,5 +30,6 @@ mihomo
 config.json
 opera-proxy
 
-# 网页部署要用的单文件，必须随仓库提交，对它解除忽略
-!worker/dist/
+# 网页部署要用的单文件，必须随仓库提交，对它解除忽略（只放行这一个文件，
+# 防 make-worker 生成的 worker.sw.js 等临时产物被误提交）
+!worker/dist/worker.js

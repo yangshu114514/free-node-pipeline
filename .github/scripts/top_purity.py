@@ -392,7 +392,7 @@ def query_batch(servers):
 
 def main():
     if not os.path.exists(IN):
-        print(f"[x] 缺 {IN}（先跑 top_latency）")
+        print(f"[x] 缺 {IN}（先跑 top_proto）")
         return 1
     with open(IN, encoding="utf-8") as f:
         lat = json.load(f)
