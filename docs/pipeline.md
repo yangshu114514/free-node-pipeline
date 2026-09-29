@@ -54,7 +54,7 @@ node_pool.json ──▶ 2a. top_tcp.py ──▶ tcp_cands.json
 ## 阶段 2b：协议初筛 — `top_proto.py`
 
 - **输入**：`tcp_cands.json` → **输出**：`latency.json`（前 1000，带 `delay`）。
-- **做什么**：把节点转成 mihomo clash 节点，起多个 mihomo 实例分片并行，用真实请求（`http://www.gstatic.com/generate_204`）测协议延迟，淘汰「协议死」的假节点。协议活节点再过**出口证书自证**：对 `CERT_URLS` 的 https 目标追加 delay 探测——mihomo 对 https 会验证目标 TLS 证书链与域名，出口异常（假证书/隧道终结/443 明文）握手直接失败（状态码不参与判定，200/403/403 挑战页均算过）；任一目标首测 fail → **等 `CERT_RETRY_GAP=2s`** 复测一次（滤 MASQUE 秒级抖动窗口，立即复测会把抖动节点双杀），复测仍 fail 且**错误非 Timeout** 才判「作恶/劣质出口」剔除（超时=网络抖动不踢，假证书/握手错=快速失败才踢；`latency.json` 记 `cert_kicked`，日志打原因 top、timeout 豁免数与被剔 raw 样例）。**剔除实锤**：第二轮剔 372/1006，日志样例 3/3 本机复现——443 上 TLS 握手全部 `WRONG_VERSION_NUMBER`（对端回明文不回 TLS，即「只通明文 http 的残隧道/假 ss」，用户开任何 https 必死），其中含已实锤劫持节点 `104.129.164.30`。**为什么必须单独一步**：实测劫持节点对 gstatic 是 SNI 白名单放行的（测速 URL 发现不了）。可单独重跑，复用 2a 结果。
+- **做什么**：把节点转成 mihomo clash 节点，起多个 mihomo 实例分片并行，用真实请求（`http://www.gstatic.com/generate_204`）测协议延迟，淘汰「协议死」的假节点。协议活节点再过**出口证书自证**：对 `CERT_URLS` 的 https 目标追加 delay 探测——mihomo 对 https 会验证目标 TLS 证书链与域名，出口异常（假证书/隧道终结/443 明文）握手直接失败（状态码不参与判定，200/403/403 挑战页均算过）；任一目标首测 fail → **等 `CERT_RETRY_GAP=2s`** 复测一次（滤 MASQUE 秒级抖动窗口，立即复测会把抖动节点双杀），复测仍 fail 且**错误非 Timeout** 才判「作恶/劣质出口」剔除（超时=网络抖动不踢，假证书/握手错=快速失败才踢；`latency.json` 记 `cert_kicked`，日志打原因 top、timeout 豁免数与被剔 raw 样例）。**剔除实锤**：第二轮剔 372/1006，日志样例 3/3 本机复现——443 上 TLS 握手全部 `WRONG_VERSION_NUMBER`（对端回明文不回 TLS，即「只通明文 http 的残隧道/假 ss」，用户开任何 https 必死），其中含已实锤的假证书类劫持出口（对知名站返回无关证书域名）。**为什么必须单独一步**：实测劫持出口对 gstatic 是 SNI 白名单放行的（测速 URL 发现不了）。可单独重跑，复用 2a 结果。
 - **关键参数**：
 
   | 参数 | 值 | 含义 |
