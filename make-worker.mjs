@@ -33,12 +33,19 @@ const mustHave = [
   ["buildConfig 新三参 top100Nodes", /top100Nodes/],
   ["WARP直连 组保留", /name: WARP|WARP\\u76F4\\u8FDE/],
   ["订阅免 token", /searchParams\.get\("token"\)/],
+  // 加密 DNS：境内阿里 DoH / 境外 Cloudflare DoH 且指定 WARP 出口 / 隧道内 DNS 也是 DoH
+  ["DNS：境内阿里云 DoH", /https:\/\/223\.5\.5\.5\/dns-query/],
+  ["DNS：境外 CF DoH 指定 WARP 出口", /dns-query#WARP/],
+  ["DNS：masque 隧道内 DoH", /dns: \['https:\/\/1\.1\.1\.1\/dns-query'/],
 ];
 const mustNotHave = [
   ["Proton 源已砍", /proton:cred/],
   ["Windscribe 源已砍", /wind:account/],
   ["ip2free 源已砍", /ip2free:nodes/],
   ["面板前端已砍", /renderUI/],
+  // 明文 DNS 回魂：旧 bootstrap 的 119.29.29.29 与裸 IP 形式的 masque dns
+  ["明文 bootstrap DNS 已清除", /119\.29\.29\.29/],
+  ["masque 明文 IP DNS 已清除", /dns: \[1\.1\.1\.1/],
 ];
 let bad = 0;
 for (const [label, re] of mustHave) {

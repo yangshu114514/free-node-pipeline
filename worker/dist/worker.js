@@ -193,7 +193,11 @@ function masqueBlock(name, addr, port, priv, pub, v4, v6, sni) {
     `    mtu: 1280`,
     `    udp: true`,
     `    remote-dns-resolve: true`,
-    `    dns: [1.1.1.1, 2606:4700:4700::1111]`
+    // 隧道内 DNS 也走 DoH：明文 UDP 53 本来只在 CF 隧道里可见，叠一层 TLS
+    // 后连 CF 内网那一段也是密文。dns.ParseNameServer 接受完整 DNS 语法，
+    // 查询经 ipStackNetDialer 从 TUN 口发出，即"在隧道内查"。
+    // IPv6 字面量必须带方括号，否则 URL 解析失败。
+    `    dns: ['https://1.1.1.1/dns-query', 'https://[2606:4700:4700::1111]/dns-query']`
   ].join("\n");
 }
 var OFFICIAL_NAME = "\u5B98\u65B9\u57DF\u540D";
@@ -418,21 +422,25 @@ function commonHeader(flag) {
     "    - '+.local'",
     "    - '*.msftconnecttest.com'",
     "    - '*.msftncsi.com'",
+    // bootstrap：只用来解析下面这些 DoH 服务器自己的域名，必须写纯 IP。
+    // 文档允许此处为加密 DNS，于是明文 UDP 53 在这份配置里彻底消失。
     "  default-nameserver:",
-    "    - 223.5.5.5",
-    "    - 119.29.29.29",
+    "    - https://223.5.5.5/dns-query",
+    "    - https://1.12.12.12/dns-query",
     "  nameserver:",
     "    - https://223.5.5.5/dns-query",
     "    - https://1.12.12.12/dns-query",
+    // 代理节点域名解析：只能境内直连，否则解析节点域名本身又要先连上节点
     "  proxy-server-nameserver:",
     "    - https://223.5.5.5/dns-query",
     "  nameserver-policy:",
     "    'geosite:cn,private':",
     "      - https://223.5.5.5/dns-query",
     "      - https://1.12.12.12/dns-query",
+    // `#组名` 后缀 = 这条 DNS 查询走哪个出口，mihomo 官方语法
     "    'geosite:geolocation-!cn':",
-    "      - https://1.1.1.1/dns-query",
-    "      - https://8.8.8.8/dns-query"
+    "      - 'https://1.1.1.1/dns-query#WARP\u76F4\u8FDE'",
+    "      - 'https://1.0.0.1/dns-query#WARP\u76F4\u8FDE'"
   ];
   return [...basics, ...profile, ...sniff, ...resolver].join("\n");
 }

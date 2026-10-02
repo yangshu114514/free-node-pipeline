@@ -104,6 +104,7 @@ python .github/scripts/top_proto.py     # 读 tcp_cands → latency.json
 
 - [架构总览](docs/architecture.md) —— 两条配置产出线、KV 键表、订阅分发与缓存协商（ETag/304、4h TTL、重建锁）、6 策略组与规则体系、链式代理防环
 - [流水线详解](docs/pipeline.md) —— 五阶段输入输出与全部参数、打分与可用性门槛、耗时基线（20.5min → 5.45min）、单步重跑
+- [加密 DNS](docs/encrypted-dns.md) —— 境内阿里云 DoH 直连、境外 Cloudflare DoH 经 `WARP直连` 组；明文 UDP 53 清零、`#组名` 出口语法、防环原理、套用到其他订阅的步骤与检查清单
 
 ## 许可
 

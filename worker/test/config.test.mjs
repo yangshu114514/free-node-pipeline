@@ -283,5 +283,41 @@ probe("规则未指向裁撤组", RETIRED.filter((g) => B.includes("," + g)).len
     directUrls.every((u) => u.includes("/Clash/") && !u.includes("/Clash/Ruleset/")));
 }
 
+// ---- 场景七：加密 DNS（境内阿里 DoH 直连 / 境外 Cloudflare DoH 经 WARP 隧道）----
+{
+  const D = buildConfig(ACCESS, null, []).yaml;
+  const dnsSeg = D.slice(D.indexOf("\ndns:"), D.indexOf("\nproxies:"));
+
+  // 明文 UDP 53 必须彻底消失：DNS 段里任何"裸 IP 当服务器"的写法都是回魂
+  probe("DNS 段无明文 UDP 53 服务器", !/^    - \d+\.\d+\.\d+\.\d+$/m.test(dnsSeg));
+  probe("default-nameserver 已是加密 DNS",
+    /default-nameserver:\n    - https:\/\/223\.5\.5\.5\/dns-query/.test(dnsSeg));
+  probe("bootstrap 不再用 119.29.29.29", !dnsSeg.includes("119.29.29.29"));
+
+  const nsSeg = dnsSeg.split("\n  nameserver:\n")[1].split("\n  proxy-server-nameserver:")[0];
+  probe("nameserver 全部为 DoH",
+    [...nsSeg.matchAll(/^    - (\S+)$/gm)].map((m) => m[1]).every((s) => s.startsWith("https://")));
+  probe("proxy-server-nameserver 是境内加密 DNS（防鸡生蛋）",
+    /proxy-server-nameserver:\n    - https:\/\/223\.5\.5\.5\/dns-query/.test(dnsSeg));
+
+  // 境内 → 阿里云 DoH，直连（不带 #出口 后缀）
+  const cnSeg = dnsSeg.split("'geosite:cn,private':")[1].split("'geosite:geolocation-!cn':")[0];
+  probe("境内策略走阿里云加密 DNS", cnSeg.includes("https://223.5.5.5/dns-query"));
+  probe("境内策略不经代理（无 #出口）", !cnSeg.includes("#"));
+
+  // 境外 → Cloudflare DoH，且必须指定出口经 WARP 隧道（直连会被 RST + 结果被污染）
+  const intlSeg = dnsSeg.split("'geosite:geolocation-!cn':")[1];
+  probe("境外策略走 Cloudflare 加密 DNS",
+    intlSeg.includes("https://1.1.1.1/dns-query") && intlSeg.includes("https://1.0.0.1/dns-query"));
+  probe("境外 DNS 指定 WARP直连 出口",
+    intlSeg.includes("https://1.1.1.1/dns-query#WARP直连"));
+  probe("境外策略统一 Cloudflare（无 Google DoH）", !intlSeg.includes("8.8.8.8"));
+
+  // masque 出站的隧道内 DNS 同样加密；IPv6 字面量必须带方括号
+  probe("masque 隧道内 DNS 已改 DoH",
+    /remote-dns-resolve: true\n    dns: \['https:\/\/1\.1\.1\.1\/dns-query', 'https:\/\/\[2606:4700:4700::1111\]\/dns-query'\]/.test(D));
+  probe("masque 隧道内无裸 IP DNS 写法", !D.includes("dns: [1.1.1.1, 2606:4700:4700::1111]"));
+}
+
 console.log(`\n通过 ${hits} 失败 ${misses}`);
 if (misses) process.exit(1);

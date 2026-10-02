@@ -75,7 +75,11 @@ function masqueBlock(name, addr, port, priv, pub, v4, v6, sni) {
     `    ip: ${v4}`, `    ipv6: ${v6}`,
     `    mtu: 1280`, `    udp: true`,
     `    remote-dns-resolve: true`,
-    `    dns: [1.1.1.1, 2606:4700:4700::1111]`,
+    // 隧道内 DNS 也走 DoH：明文 UDP 53 本来只在 CF 隧道里可见，叠一层 TLS
+    // 后连 CF 内网那一段也是密文。dns.ParseNameServer 接受完整 DNS 语法，
+    // 查询经 ipStackNetDialer 从 TUN 口发出，即"在隧道内查"。
+    // IPv6 字面量必须带方括号，否则 URL 解析失败。
+    `    dns: ['https://1.1.1.1/dns-query', 'https://[2606:4700:4700::1111]/dns-query']`,
   ].join("\n");
 }
 
@@ -299,22 +303,36 @@ function commonHeader(flag) {
     "    QUIC:", "      ports: [443, 8443]",
     "  skip-domain:", "    - '+.push.apple.com'", "    - '+.apple.com'", "",
   ];
+  // 全链路加密 DNS，零明文 UDP 53：
+  //   境内域名 → 阿里云 DoH，直连查（最快，且境内域名本就不该出境）
+  //   境外域名 → Cloudflare DoH，经 WARP 加密隧道查
+  // 为什么境外这条必须走代理：1.1.1.1:443 在国内直连会被 RST 掐断；就算连上，
+  // 明文结果也会被污染，污染成 CN IP 后会被 GEOIP,CN 判成直连 → TLS 被切。
+  // 为什么可以走代理而不死循环：DNS 查询本身是一次 TCP 连接，走 WARP直连 组；
+  // 该组的健康检查目标（gstatic）由 masque 出站自己的 remote-dns-resolve 在
+  // 隧道内解析，不回到这里的 nameserver-policy，环在这里断开。
   const resolver = [
     "dns:", "  enable: true", "  listen: 0.0.0.0:1053",
     `  ipv6: ${flag}`, "  enhanced-mode: fake-ip", "  fake-ip-range: 198.18.0.1/16",
     "  fake-ip-filter:",
     "    - '+.lan'", "    - '+.local'",
     "    - '*.msftconnecttest.com'", "    - '*.msftncsi.com'",
-    "  default-nameserver:", "    - 223.5.5.5", "    - 119.29.29.29",
+    // bootstrap：只用来解析下面这些 DoH 服务器自己的域名，必须写纯 IP。
+    // 文档允许此处为加密 DNS，于是明文 UDP 53 在这份配置里彻底消失。
+    "  default-nameserver:",
+    "    - https://223.5.5.5/dns-query", "    - https://1.12.12.12/dns-query",
     "  nameserver:",
     "    - https://223.5.5.5/dns-query", "    - https://1.12.12.12/dns-query",
+    // 代理节点域名解析：只能境内直连，否则解析节点域名本身又要先连上节点
     "  proxy-server-nameserver:",
     "    - https://223.5.5.5/dns-query",
     "  nameserver-policy:",
     "    'geosite:cn,private':",
     "      - https://223.5.5.5/dns-query", "      - https://1.12.12.12/dns-query",
+    // `#组名` 后缀 = 这条 DNS 查询走哪个出口，mihomo 官方语法
     "    'geosite:geolocation-!cn':",
-    "      - https://1.1.1.1/dns-query", "      - https://8.8.8.8/dns-query",
+    "      - 'https://1.1.1.1/dns-query#WARP直连'",
+    "      - 'https://1.0.0.1/dns-query#WARP直连'",
   ];
   return [...basics, ...profile, ...sniff, ...resolver].join("\n");
 }

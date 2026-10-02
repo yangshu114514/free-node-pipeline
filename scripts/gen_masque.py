@@ -110,7 +110,9 @@ PROXY_STATIC = (
     ("mtu", "1280"),
     ("udp", "true"),
     ("remote-dns-resolve", "true"),
-    ("dns", "[1.1.1.1, 2606:4700:4700::1111]"),
+    # 隧道内 DNS 也走 DoH：明文 UDP 53 本来只在 CF 隧道里可见，叠一层 TLS 后
+    # 连 CF 内网那一段也是密文。IPv6 字面量必须带方括号，否则 URL 解析失败。
+    ("dns", "['https://1.1.1.1/dns-query', 'https://[2606:4700:4700::1111]/dns-query']"),
 )
 
 # rule-providers 每条的公共字段（url/path 按条目另生成）
@@ -226,15 +228,22 @@ DNS_KV = (
         ("fake-ip-range", "198.18.0.1/16"),
         ("fake-ip-filter", ("'+.lan'", "'+.local'",
                             "'*.msftconnecttest.com'", "'*.msftncsi.com'")),
-        ("default-nameserver", ("223.5.5.5", "119.29.29.29")),
+        # bootstrap 只用于解析下面这些 DoH 服务器自己的域名，必须写纯 IP；
+        # 官方文档允许此处是加密 DNS，于是明文 UDP 53 在产物里彻底消失。
+        ("default-nameserver", ("https://223.5.5.5/dns-query",
+                                "https://1.12.12.12/dns-query")),
         ("nameserver", ("https://223.5.5.5/dns-query",
                         "https://1.12.12.12/dns-query")),
         ("proxy-server-nameserver", ("https://223.5.5.5/dns-query",)),
+        # 境内 → 阿里云 DoH 直连；境外 → Cloudflare DoH 走 ♻️ 自动选择（WARP 隧道）。
+        # `#组名` 是 mihomo 官方语法：指定这条 DNS 查询的出口。
+        # 选 ♻️ 自动选择 而非 🚀 节点选择，是因为前者是 url-test 恒走最快 WARP 节点，
+        # 用户把它改成 DIRECT 也不会让境外 DNS 退化成"直连 1.1.1.1"（国内必被 RST）。
         ("nameserver-policy", (
             ("'geosite:cn,private'", ("https://223.5.5.5/dns-query",
                                       "https://1.12.12.12/dns-query")),
-            ("'geosite:geolocation-!cn'", ("https://1.1.1.1/dns-query",
-                                           "https://8.8.8.8/dns-query")),
+            ("'geosite:geolocation-!cn'", ("'https://1.1.1.1/dns-query#♻️ 自动选择'",
+                                           "'https://1.0.0.1/dns-query#♻️ 自动选择'")),
         )),
     )),
 )
@@ -336,12 +345,16 @@ def encode_component(value: object) -> str:
 def shadowrocket_links(conf: dict, secret: str, public: str) -> list[str]:
     """masque:// 链接列表，字段与命名对齐 Shadowrocket 的 masque 实现：
     masque://<endpoint_ip>:<port>?publicKey=&privateKey=&ip=&dns=&udp=&cc=&flag=#<名称>
-    publicKey 用剥壳后的 base64 DER，privateKey 沿用 usque 原值。"""
+    publicKey 用剥壳后的 base64 DER，privateKey 沿用 usque 原值。
+    dns 给的是 DoH 端点（Shadowrocket 官方支持 DoH/DoT/DoQ）——这个 DNS 在
+    MASQUE 隧道内使用，明文也出不了隧道，换成 DoH 是为了端到端都不留明文。
+    若某版本 Shadowrocket 不认 URI 里的 DoH 写法，回退成 "1.1.1.1, 1.0.0.1"
+    即可，安全性只降到"隧道内明文"，不泄漏到公网。"""
     head = "&".join([
         "publicKey=" + encode_component(public),
         "privateKey=" + encode_component(secret),
         "ip=" + encode_component(conf["ipv4"]),
-        "dns=" + encode_component("1.1.1.1, 8.8.8.8"),
+        "dns=" + encode_component("https://1.1.1.1/dns-query,https://1.0.0.1/dns-query"),
         "udp=1",
         "cc=" + encode_component(""),
         "flag=" + encode_component("CDN"),
