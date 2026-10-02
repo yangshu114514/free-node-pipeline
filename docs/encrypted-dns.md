@@ -246,3 +246,47 @@ node make-worker.mjs          # 13 项关键特征自检（含加密 DNS 3 项 +
 node worker/test/config.test.mjs   # 79 项配置回归
 python -m unittest discover -s tests -t .   # 39 项流水线测试
 ```
+
+## 八、部署与线上生效（2026-10-02 实操记录）
+
+改完 Worker 代码后，**换脚本 ≠ 订阅立即生效**，还差两步：
+
+1. **上传新脚本**。线上 `omk-opera-masque` 是 **Service Worker 形态**
+   （尾部 `self.addEventListener('fetch', ...)`，IIFE 包裹），上传时
+   metadata 走 `body_part: "script"`；若误按 module 形态（`main_module`）
+   传进去，`export default { fetch }` 缺失，**整个订阅站会挂**。
+   账号是 `yangshugmail@gmail.com`（`cf --profile sub`），上传即自动部署
+   100% 流量。
+
+2. **触发重建**。订阅正文是 Worker 生成后**缓存进 KV**（`config:yaml`）
+   的，脚本更新后旧正文仍会一直被返回，必须主动重建：
+
+   ```bash
+   # 令牌在 KV 键 proton:token（64 位），只在内存里用，不要打印
+   curl -X POST "https://wtfyangshu.cc.cd/push/<令牌>/rebuild"
+   # 期望: {"ok":true,"msg":"已重建，top100 100 个",...}
+   ```
+
+   另两个重建入口：`POST /api/refresh`（需管理员登录会话）、
+   `POST /api/reset-warp`（同时重置 WARP 注册信息）。
+
+**回滚点**：出问题时把流量切回旧版本即可，无需重新上传：
+
+```bash
+cf workers deployments create --worker omk-opera-masque --profile sub \
+  --versions '[{"version_id":"3f8e2c9a-50b4-4c43-bfc2-26775dda6c45","percentage":100}]'
+```
+
+（`3f8e2c9a` 是本次部署前的版本；下次部署前先用
+`cf workers deployments list --worker omk-opera-masque --profile sub`
+记下当时的最新 `version_id` 作为新回滚点。）
+
+**上线验收**（三道，缺一不可）：
+
+```bash
+# 1) 线上正文特征：阿里 DoH 在、#WARP直连 在、119.29 已灭、明文 dns:[1.1.1.1] 已灭
+# 2) 本地 mihomo 校验线上正文（需要同目录有 GeoSite.dat/GeoIP.dat/Country.mmdb）
+C:\ProgramData\clash-verge-service\cores\verge-mihomo-alpha.exe -t -d <目录> -f live-sub.yaml
+#    期望: configuration file ... test is successful
+# 3) 日志里两条 policy 的 records 数正常（cn 111274 / geolocation-!cn 27206）
+```
