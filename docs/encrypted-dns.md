@@ -52,10 +52,16 @@
     'geosite:cn,private':             # 境内 → 阿里云 DoH，直连
       - https://223.5.5.5/dns-query
       - https://1.12.12.12/dns-query
-    'geosite:geolocation-!cn':        # 境外 → Cloudflare DoH，出口钉死 WARP直连
+    'geosite:geolocation-!cn':        # 境外 → Cloudflare DoH，出口钉死 WARP 出口组
       - 'https://1.1.1.1/dns-query#WARP直连'
       - 'https://1.0.0.1/dns-query#WARP直连'
 ```
+
+> 上面 `#` 后面写的是 **Worker 动态订阅**里的组名 `WARP直连`。
+> **手动线订阅**（`scripts/gen_masque.py` 的产物）里没有这个组，它的 WARP
+> url-test 组原名就是 `♻️ 自动选择`，所以那边的值是
+> `'https://1.1.1.1/dns-query#♻️ 自动选择'`。两处组名都是**沿用各产物原有
+> 组名，没有为了 DNS 去改名**。
 
 ### 2) MASQUE 出站的隧道内 DNS
 
@@ -146,7 +152,9 @@ grep -n "^  - name:" your-subscription.yaml
 ```
 
 找出那个**恒定走 WARP/境外节点、且用户改不动**的 url-test 组名。
-本仓库两份产物统一叫 `WARP直连`。**后面 `#` 后面的名字必须与它逐字一致。**
+本仓库里：Worker 动态订阅叫 `WARP直连`；手动线订阅（`gen_masque.py` 产物）叫 `♻️ 自动选择`。
+**`#` 后面的名字必须与你订阅里的组名逐字一致**（含 emoji 与空格），写错了
+mihomo 会当成接口名处理或直接报错。
 
 ### 第 1 步：替换 `dns:` 整段
 
