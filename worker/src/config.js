@@ -464,7 +464,11 @@ function ssAuthFromRaw(raw) {
   }
   const dec = b64d(info);            // 形态 1；非法 base64 时 b64d 原样返回
   const text = RE_NONPRINT.test(dec) ? info : dec;
-  const cut = text.lastIndexOf(":");
+  // 按**第一个**冒号切：method 永不含冒号，而 password 可以含冒号 ——
+  // AEAD-2022 是双向各一把 PSK，形态就是 method:key1:key2（如
+  // 2022-blake3-aes-256-gcm:<client>:<server>）。用 lastIndexOf 会把
+  // 前两段整体当 method → 内核 unknown method 拒载整份配置（2026-10-04 实测事故）。
+  const cut = text.indexOf(":");
   if (cut <= 0 || cut === text.length - 1) return null;
   return { method: text.slice(0, cut), pass: text.slice(cut + 1) };
 }
@@ -630,7 +634,9 @@ function topProxy(n, name, proto) {
         const dec = b64d(ident);
         if (dec.length > 0 && !RE_NONPRINT.test(dec)) {
           const mp = dec.split(":");
-          if (mp.length >= 2) { method = mp.slice(0, -1).join(":"); password = mp.slice(-1)[0]; }
+          // 同 ssAuthFromRaw：按第一个冒号切，password 保留剩余全部段
+          // （AEAD-2022 的 method:key1:key2 形态，尾冒号切会撑爆 method）
+          if (mp.length >= 2) { method = mp[0]; password = mp.slice(1).join(":"); }
         } else {
           const parts = ident.split(":");
           if (parts.length >= 3) { method = parts[0]; password = parts.slice(1).join(":"); }

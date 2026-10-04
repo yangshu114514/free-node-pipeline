@@ -250,6 +250,28 @@ probe("规则未指向裁撤组", RETIRED.filter((g) => B.includes("," + g)).len
   probe("ss 密码取 raw 完整 100 位且 cipher 正确",
     Y3.includes('cipher: "aes-256-gcm"') && Y3.includes(`password: "${longPw}"`));
 
+  // SS2022 双密钥（method:key1:key2，双向各一把 PSK）——2026-10-04 线上实锤：
+  // 旧代码按最后一个冒号切，method 被撑成 "2022-blake3-...:<key1>"，
+  // 内核 unknown method 拒载整份配置（proxy 102 → 订阅应用失败）。
+  // 必须按第一个冒号切：method 不含冒号，password 保留剩余全部段。
+  const k1 = "sUR6Ny8Y6PSvHhl/DUxconwxg6VZyFdsdfaVCvEatJo=";
+  const k2 = "7bTEhHgpErKiRjE1ega+H6pcpJsNLFB0CjQseujAHrA=";
+  const ss2022 = { proto: "ss", server: "129.150.59.74", port: 14384,
+                   ident: btoa(`2022-blake3-aes-256-gcm:${k1}:${k2}`).slice(0, 80),
+                   raw: `ss://${btoa(`2022-blake3-aes-256-gcm:${k1}:${k2}`)}@129.150.59.74:14384#SG` };
+  const Y22 = buildConfig(ACCESS, null, [ss2022]).yaml;
+  probe("SS2022 cipher 是纯方法名（不含冒号）",
+    Y22.includes('cipher: "2022-blake3-aes-256-gcm"'));
+  probe("SS2022 password 保留双密钥两段",
+    Y22.includes(`password: "${k1}:${k2}"`));
+  // 明文形态 ident（无 raw 时的兜底）同样按首冒号切
+  const ss2022Plain = { proto: "ss", server: "10.0.0.1", port: 443,
+                        ident: `2022-blake3-aes-256-gcm:${k1}:${k2}`, geo: "SG" };
+  const Y22P = buildConfig(ACCESS, null, [ss2022Plain]).yaml;
+  probe("SS2022 明文 ident 兜底也是纯方法名+双密钥",
+    Y22P.includes('cipher: "2022-blake3-aes-256-gcm"') &&
+    Y22P.includes(`password: "${k1}:${k2}"`));
+
   // 控制字符清洗（线上实锤：某节点 alpn 混入 U+0096，Verge 严格解析器拒载
   // "invalid yaml"）。j() 统一剥 C0+C1 后，任何字段带脏字符渲染结果必须干净。
   const dirty = buildConfig(ACCESS, null, [{

@@ -1321,6 +1321,4 @@ var routes = {
   }
 };
 var index_default = routes;
-export {
-  index_default as default
-};
+self.addEventListener('fetch', (event) => { event.respondWith(index_default.fetch(event.request, { KV: KV })); });
